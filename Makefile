@@ -1,7 +1,11 @@
 SRCS		=	main.c \
 				utils.c \
 				parse_file.c \
-				textures.c
+				textures.c \
+				colors.c \
+				parse_map.c \
+				./get_next_line/get_next_line.c \
+				./get_next_line/get_next_line_utils.c \
 
 OBJS		=	${SRCS:.c=.o}
 

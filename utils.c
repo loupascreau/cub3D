@@ -6,11 +6,11 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 13:30:19 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/14 14:18:14 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/01/18 09:26:36 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft.h"
+#include "./includes/ft.h"
 
 int		ft_strlen(char *str)
 {
@@ -56,7 +56,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	unsigned int	size;
 
 	i = 0;
-//	printf("start = %d, len = %d, s = %s\n", (int)start, (int)len, s);
 	if (!s)
 		return (NULL);
 	size = ft_strlen((char *)s);
@@ -69,4 +68,24 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	new[i] = '\0';
 	return (new);
+}
+
+char	*ft_putnbr_base(int nbr, char *tab, int i)
+{
+	static char base[] = "0123456789ABCDEF";
+
+	if (nbr == 0)
+	{
+		tab[i] = '0';
+		tab[i - 1] = '0';
+		return (tab);
+	}
+	else if (nbr < 16)
+		tab[i] = base[nbr];
+	else
+	{
+		ft_putnbr_base(nbr / 16, tab, i - 1);
+		tab[i] = base[nbr % 16];
+	}
+	return (tab);
 }
