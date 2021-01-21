@@ -6,13 +6,13 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 10:49:35 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/20 16:45:21 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/01/21 10:55:38 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft.h"
 
-int		ft_check_line(char *line1, char *line2)
+int		ft_check_line(char *line1, char *line2, int *st)
 {
 	index_t	index;
 
@@ -21,9 +21,7 @@ int		ft_check_line(char *line1, char *line2)
 		index.i++;
 	while (line2[index.j])
 	{
-		if (index.j == index.i && line1[index.i] != '1' && line2[index.j] != '1')
-			return (0);
-		index.check = ft_check_all_line(line1, line2, &index);
+		index.check = ft_check_all_line(line1, line2, &index, st);
 		if (index.check == 0)
 			return (0);
 		else if (index.check == 1)
@@ -76,10 +74,12 @@ int		ft_parse_map(char *buf, parse_t *parse)
 	static char	*line1 = NULL;
 	static char	*line2 = NULL;
 	char		*line;
+	int			st;
 	int			i;
 
 	i = 0;
 	line = 0;
+	st = 0;
 	while (buf[parse->i] != '1')
 		parse->i++;
 	while (buf[parse->i - 1] != '\n')
@@ -90,7 +90,7 @@ int		ft_parse_map(char *buf, parse_t *parse)
 		if (line2 != NULL)
 			ft_init_next_line(&line2, &line1);
 		ft_parse_line(parse, buf, &line, &line2);
-		if (ft_check_line(line1, line2) == 0)
+		if (ft_check_line(line1, line2, &st) == 0)
 			return (0);
 	}
 	if (ft_check_last_line(line1, line2) == 0)

@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:23:26 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/20 16:19:49 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/01/21 11:01:31 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct		index_s
 {
 	int		i;
 	int		j;
-	int		start;
 	int		check;
 }					index_t;
 
@@ -80,11 +79,11 @@ void	ft_last(parse_t *parse);
 int		ft_only_map(char *buf, parse_t *parse);
 int		ft_parse_map(char *buf, parse_t *parse);
 void	ft_init_index(index_t *index);
-int		ft_check_line(char *line1, char *line2);
+int		ft_check_line(char *line1, char *line2, int *st);
 int		ft_begin_next_line(char *line1, char *line2, index_t *index);
-int		ft_check_all_line(char *line1, char *line2, index_t *index);
-int		ft_inside_next_line(char *line1, char *line2, index_t *index);
-void	ft_verif_lines(char *line1, index_t *index);
+int		ft_check_all_line(char *line1, char *line2, index_t *index, int *st);
+int		ft_inside_next_line(char *line1, char *line2, index_t *index, int *st);
+int		ft_verif_lines(char *line1, char *line2, index_t *index, int *st);
 int		ft_check_last_line(char *line1, char *line2);
 void	ft_parse_line(parse_t *parse, char *buf, char **line, char **rd_line);
 void	ft_init_next_line(char **line2, char **line1);
