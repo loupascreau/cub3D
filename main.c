@@ -24,10 +24,12 @@ int		ft_check_argv(char *argv)
 			i++;
 			if (argv[i] != 'c' || argv[i + 1] != 'u' || argv[i + 2] != 'b')
 				return (0);
+			else
+				return (1);
 		}
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
 int		main(int argc, char **argv)

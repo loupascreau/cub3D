@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 11:18:45 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/18 11:22:03 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/01/20 16:20:11 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		ft_only_map(char *buf, parse_t *parse)
 	{
 		if (parse->EA == 1 && parse->S == 1 && parse->F == 1 && parse->C == 1)
 		{
-			parse->i = parse->last;	
+			parse->i = parse->last;
 			if (ft_parse_map(buf, parse) == 0)
 				return (0);
 		}
@@ -41,6 +41,26 @@ int		ft_only_map(char *buf, parse_t *parse)
 	else
 		return (0);
 	return (1);
+}
+
+void	ft_list_params(char *buf, parse_t *parse)
+{
+	if (buf[parse->i] == 'R' && parse->R == 0)
+		ft_fill_x_y(buf, parse);
+	if ((buf[parse->i] == 'N' && buf[parse->i + 1] == 'O') && parse->NO == 0)
+		ft_fill_no(buf, parse);
+	if ((buf[parse->i] == 'S' && buf[parse->i + 1] == 'O') && parse->SO == 0)
+		ft_fill_so(buf, parse);
+	if ((buf[parse->i] == 'W' && buf[parse->i + 1] == 'E') && parse->WE == 0)
+		ft_fill_we(buf, parse);
+	if ((buf[parse->i] == 'E' && buf[parse->i + 1] == 'A') && parse->EA == 0)
+		ft_fill_ea(buf, parse);
+	if (buf[parse->i] == 'S' && parse->S == 0)
+		ft_fill_s(buf, parse);
+	if (buf[parse->i] == 'F' && parse->F == 0)
+		ft_fill_f(buf, parse);
+	if (buf[parse->i] == 'C' && parse->C == 0)
+		ft_fill_c(buf, parse);
 }
 
 int		ft_read_map(parse_t *parse)
@@ -55,27 +75,12 @@ int		ft_read_map(parse_t *parse)
 	buf[ret] = '\0';
 	while (buf[parse->i])
 	{
-		if (buf[parse->i] == 'R' && parse->R == 0)
-			ft_fill_x_y(buf, parse);
-		if ((buf[parse->i] == 'N' && buf[parse->i + 1] == 'O') && parse->NO == 0)
-			ft_fill_NO(buf, parse);
-		if ((buf[parse->i] == 'S' && buf[parse->i + 1] == 'O') && parse->SO == 0)
-			ft_fill_SO(buf, parse);
-		if ((buf[parse->i] == 'W' && buf[parse->i + 1] == 'E') && parse->WE == 0)
-			ft_fill_WE(buf, parse);
-		if ((buf[parse->i] == 'E' && buf[parse->i + 1] == 'A') && parse->EA == 0)
-			ft_fill_EA(buf, parse);
-		if (buf[parse->i] == 'S' && parse->S == 0)
-			ft_fill_S(buf, parse);
-		if (buf[parse->i] == 'F' && parse->F == 0)
-			ft_fill_F(buf, parse);
-		if (buf[parse->i] == 'C' && parse->C == 0)
-			ft_fill_C(buf, parse);
+		ft_list_params(buf, parse);
 		parse->i++;
 	}
 	if (ft_only_map(buf, parse) == 0)
 	{
-		printf("Error .cub\n");
+		printf("Error\nMap isn't closed\n");
 		return (0);
 	}
 	printf("x = %d, y = %d\n", parse->x, parse->y);

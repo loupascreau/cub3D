@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:23:26 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/18 11:25:22 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/01/20 16:19:49 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@ typedef struct		data_s
 	void	*mlx;
 	void	*win;
 }					data_t;
+
+typedef struct		index_s
+{
+	int		i;
+	int		j;
+	int		start;
+	int		check;
+}					index_t;
 
 typedef struct		parse_s
 {
@@ -58,19 +66,28 @@ char	*ft_putnbr_base(int nbr, char *tab, int i);
 int		ft_strlen(char *str);
 int		ft_check_argv(char *argv);
 void	ft_init(parse_t *parse);
+void	ft_list_params(char *buf, parse_t *parse);
 int		ft_read_map(parse_t *parse);
 void	ft_fill_x_y(char *buf, parse_t *parse);
-void	ft_fill_NO(char *buf, parse_t *parse);
-void	ft_fill_SO(char *buf, parse_t *parse);
-void	ft_fill_WE(char *buf, parse_t *parse);
-void	ft_fill_EA(char *buf, parse_t *parse);
-void	ft_fill_S(char *buf, parse_t *parse);
-void	ft_fill_F(char *buf, parse_t *parse);
-void	ft_fill_C(char *buf, parse_t *parse);
+void	ft_fill_no(char *buf, parse_t *parse);
+void	ft_fill_so(char *buf, parse_t *parse);
+void	ft_fill_we(char *buf, parse_t *parse);
+void	ft_fill_ea(char *buf, parse_t *parse);
+void	ft_fill_s(char *buf, parse_t *parse);
+void	ft_fill_f(char *buf, parse_t *parse);
+void	ft_fill_c(char *buf, parse_t *parse);
 void	ft_last(parse_t *parse);
 int		ft_only_map(char *buf, parse_t *parse);
 int		ft_parse_map(char *buf, parse_t *parse);
-int		ft_check_line(char *first_line, char *next_line, int *start);
+void	ft_init_index(index_t *index);
+int		ft_check_line(char *line1, char *line2);
+int		ft_begin_next_line(char *line1, char *line2, index_t *index);
+int		ft_check_all_line(char *line1, char *line2, index_t *index);
+int		ft_inside_next_line(char *line1, char *line2, index_t *index);
+void	ft_verif_lines(char *line1, index_t *index);
+int		ft_check_last_line(char *line1, char *line2);
+void	ft_parse_line(parse_t *parse, char *buf, char **line, char **rd_line);
+void	ft_init_next_line(char **line2, char **line1);
 int		get_next_line(parse_t *parse, char *buf, char **line);
 char	*ft_strdup(char *s);
 char	*ft_strjoin(char *s1, char *s2);

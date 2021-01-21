@@ -4,6 +4,7 @@ SRCS		=	main.c \
 				textures.c \
 				colors.c \
 				parse_map.c \
+				check_all.c \
 				./get_next_line/get_next_line.c \
 				./get_next_line/get_next_line_utils.c \
 

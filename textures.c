@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 11:19:56 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/16 10:33:34 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/01/20 16:25:52 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_fill_x_y(char *buf, parse_t *parse)
 	parse->i = 0;
 }
 
-void	ft_fill_NO(char *buf, parse_t *parse)
+void	ft_fill_no(char *buf, parse_t *parse)
 {
 	int	diff;
 
@@ -46,7 +46,7 @@ void	ft_fill_NO(char *buf, parse_t *parse)
 	parse->i = 0;
 }
 
-void	ft_fill_SO(char *buf, parse_t *parse)
+void	ft_fill_so(char *buf, parse_t *parse)
 {
 	int	diff;
 
@@ -70,7 +70,7 @@ void	ft_fill_SO(char *buf, parse_t *parse)
 	parse->i = 0;
 }
 
-void	ft_fill_WE(char *buf, parse_t *parse)
+void	ft_fill_we(char *buf, parse_t *parse)
 {
 	int	diff;
 
@@ -94,7 +94,7 @@ void	ft_fill_WE(char *buf, parse_t *parse)
 	parse->i = 0;
 }
 
-void	ft_fill_EA(char *buf, parse_t *parse)
+void	ft_fill_ea(char *buf, parse_t *parse)
 {
 	int	diff;
 
@@ -117,28 +117,3 @@ void	ft_fill_EA(char *buf, parse_t *parse)
 	ft_last(parse);
 	parse->i = 0;
 }
-
-void	ft_fill_S(char *buf, parse_t *parse)
-{
-	int	diff;
-
-	diff = 0;
-	parse->S = 1;
-	parse->i++;
-	while (buf[parse->i] && diff == 0)
-	{
-		if (buf[parse->i] == '.' && buf[parse->i + 1] == '/')
-		{
-			while (buf[parse->i] > 32 && buf[parse->i] < 127)
-			{
-				diff++;
-				parse->i++;
-			}
-			parse->s = ft_substr(buf, (parse->i - diff), diff);
-		}
-		parse->i++;
-	}
-	ft_last(parse);
-	parse->i = 0;
-}
-
