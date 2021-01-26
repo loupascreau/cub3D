@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 11:46:45 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/21 11:04:06 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/01/26 11:06:42 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,15 @@ int		ft_argc_argv(int argc, char *argv)
 int		main(int argc, char **argv)
 {
 	parse_t		parse;
+//	data_t		data;
 
 	if (ft_argc_argv(argc, argv[1]) == 0)
 		return (0);
 	parse.fd = open(argv[1], O_RDONLY);
 	if (ft_read_map(&parse) == 0)
 		return (0);
+//	data.mlx = mlx_init();
+//	data.win = mlx_new_window(data.mlx, parse.x, parse.y, "cub3D");
+//	mlx_loop(data.mlx);
 	return (0);
 }

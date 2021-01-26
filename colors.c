@@ -6,11 +6,41 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 14:38:06 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/20 16:25:44 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/01/26 11:13:53 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft.h"
+
+void	ft_last(parse_t *parse)
+{
+	if (parse->i > parse->last)
+		parse->last = parse->i;
+}
+
+void	ft_fill_s(char *buf, parse_t *parse)
+{
+	int	diff;
+
+	diff = 0;
+	parse->S = 1;
+	parse->i++;
+	while (buf[parse->i] && diff == 0)
+	{
+		if (buf[parse->i] == '.' && buf[parse->i + 1] == '/')
+		{
+			while (buf[parse->i] > 32 && buf[parse->i] < 127)
+			{
+				diff++;
+				parse->i++;
+			}
+			parse->s = ft_substr(buf, (parse->i - diff), diff);
+		}
+		parse->i++;
+	}
+	ft_last(parse);
+	parse->i = 0;
+}
 
 void	ft_fill_f(char *buf, parse_t *parse)
 {
@@ -58,36 +88,6 @@ void	ft_fill_c(char *buf, parse_t *parse)
 	parse->c = ft_putnbr_base(nbr2, parse->c, 6 - 1);
 	parse->c = ft_putnbr_base(nbr3, parse->c, 8 - 1);
 	parse->c[8] = '\0';
-	ft_last(parse);
-	parse->i = 0;
-}
-
-void	ft_last(parse_t *parse)
-{
-	if (parse->i > parse->last)
-		parse->last = parse->i;
-}
-
-void	ft_fill_s(char *buf, parse_t *parse)
-{
-	int	diff;
-
-	diff = 0;
-	parse->S = 1;
-	parse->i++;
-	while (buf[parse->i] && diff == 0)
-	{
-		if (buf[parse->i] == '.' && buf[parse->i + 1] == '/')
-		{
-			while (buf[parse->i] > 32 && buf[parse->i] < 127)
-			{
-				diff++;
-				parse->i++;
-			}
-			parse->s = ft_substr(buf, (parse->i - diff), diff);
-		}
-		parse->i++;
-	}
 	ft_last(parse);
 	parse->i = 0;
 }

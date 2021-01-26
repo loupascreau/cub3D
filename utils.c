@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 13:30:19 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/18 09:26:36 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/01/26 11:13:36 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		ft_atoi(char *str, parse_t *parse)
 		result = result * 10 + (str[i] - 48);
 		i++;
 	}
-	parse->i = i;
+	parse->i += i - parse->i;
 	return (result * sign);
 }
 
@@ -88,4 +88,18 @@ char	*ft_putnbr_base(int nbr, char *tab, int i)
 		tab[i] = base[nbr % 16];
 	}
 	return (tab);
+}
+
+char	*ft_strcpy(char *dest, char *src)
+{
+	int i;
+
+	i = 0;
+	while (src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }

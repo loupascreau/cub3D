@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 11:18:45 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/20 16:20:11 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/01/26 11:16:27 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,22 @@ void	ft_init(parse_t *parse)
 	parse->F = 0;
 	parse->C = 0;
 	parse->last = 0;
+	parse->posX = 0;
+	parse->posY = 0;
 }
 
-int		ft_only_map(char *buf, parse_t *parse)
+int		ft_map_at_end(char *buf, parse_t *parse)
 {
 	if (parse->R == 1 && parse->NO == 1 && parse->SO == 1 && parse->WE == 1)
 	{
 		if (parse->EA == 1 && parse->S == 1 && parse->F == 1 && parse->C == 1)
 		{
 			parse->i = parse->last;
-			if (ft_parse_map(buf, parse) == 0)
+			while (buf[parse->i] != '1' && buf[parse->i])
+				parse->i++;
+			while (buf[parse->i - 1] != '\n')
+				parse->i--;
+			if (ft_parse_map(buf, parse) == 0) 
 				return (0);
 		}
 		else
@@ -78,11 +84,23 @@ int		ft_read_map(parse_t *parse)
 		ft_list_params(buf, parse);
 		parse->i++;
 	}
-	if (ft_only_map(buf, parse) == 0)
+	if (ft_map_at_end(buf, parse) == 0)
 	{
-		printf("Error\nMap isn't closed\n");
+		printf("Error\nMap isn't closed or she's not at end\n");
 		return (0);
 	}
+	if	(ft_find_player(parse) == 0)
+	{
+		printf("Error\nYour map is missing starter coordinates\n");
+		return (0);
+	}
+	int i = 0;
+	while (parse->tab[i])
+	{
+		printf("tab[%d] =	%s\n", i, parse->tab[i]);
+		i++;
+	}
+	printf("coordinates begin = [%d, %d]\n", parse->posY, parse->posX);
 	printf("x = %d, y = %d\n", parse->x, parse->y);
 	printf("parse->no = %s\n", parse->no);
 	printf("parse->so = %s\n", parse->so);
@@ -91,5 +109,5 @@ int		ft_read_map(parse_t *parse)
 	printf("parse->s = %s\n", parse->s);
 	printf("parse->f = %s\n", parse->f);
 	printf("parse->c = %s\n", parse->c);
-	return (0);
+	return (1);
 }

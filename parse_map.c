@@ -6,94 +6,63 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 10:49:35 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/21 10:55:38 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/01/26 11:15:01 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/ft.h"
 
-int		ft_check_line(char *line1, char *line2, int *st)
+void	ft_count_line(char *buf, parse_t *parse, char ***tab)
 {
-	index_t	index;
-
-	ft_init_index(&index);
-	while (line1[index.i] != '1')
-		index.i++;
-	while (line2[index.j])
-	{
-		index.check = ft_check_all_line(line1, line2, &index, st);
-		if (index.check == 0)
-			return (0);
-		else if (index.check == 1)
-			return (1);
-		index.j++;
-	}
-	index.j--;
-	if (line2[index.j] == '1' && (line2[index.j] == line1[index.j]
-	|| line2[index.j] == line1[index.j - 1]
-	|| line2[index.j] == line1[index.j + 1]))
-		return (1);
-	return (0);
-}
-
-int		ft_check_last_line(char *line1, char *line2)
-{
+	int	j;
 	int	i;
 
 	i = 0;
-	while (line2[i])
+	j = parse->i;
+	while (buf[j])
 	{
-		if (line2[i] == ' ' && (line1[i] != '1' && line1[i - 1] != '1'
-		&& line1[i + 1] != '1'))
-			return (0);
-		if (line2[i] != '1' && line2[i] != ' ' && line1[i] != '1')
-			return (0);
-		i++;
+		if (buf[j] == '\n')
+			i++;
+		j++;
 	}
-	return (1);
+	if (!(*tab = (char **)malloc(sizeof(char *) * i + 1)))
+		return ;
 }
 
-void	ft_parse_line(parse_t *parse, char *buf, char **line, char **rd_line)
+char	*ft_count_nbr(char **line, char *tab)
 {
-	get_next_line(parse, buf, line);
-	*rd_line = ft_strdup(*line);
+	int	size;
+	int	i;
+
+	i = 0;
+	size = ft_strlen(*line);
+	if (!(tab = (char *)malloc(sizeof(char) * size + 1)))
+		return (NULL);
+	tab[size] = '\0';
+	tab = ft_strcpy(tab, *line);
 	free(*line);
 	*line = NULL;
-	printf("line		= %s\n", *rd_line);
-}
-
-void	ft_init_next_line(char **line2, char **line1)
-{
-	free(*line1);
-	*line1 = NULL;
-	*line1 = ft_strdup(*line2);
+	return (tab);
 }
 
 int		ft_parse_map(char *buf, parse_t *parse)
 {
-	static char	*line1 = NULL;
-	static char	*line2 = NULL;
-	char		*line;
-	int			st;
-	int			i;
+	char			*line;
+	int				size;
+	int				j;
 
-	i = 0;
+	j = 0;
 	line = 0;
-	st = 0;
-	while (buf[parse->i] != '1')
-		parse->i++;
-	while (buf[parse->i - 1] != '\n')
-		parse->i--;
-	ft_parse_line(parse, buf, &line, &line1);
+	ft_count_line(buf, parse, &parse->tab);
 	while (buf[parse->i])
 	{
-		if (line2 != NULL)
-			ft_init_next_line(&line2, &line1);
-		ft_parse_line(parse, buf, &line, &line2);
-		if (ft_check_line(line1, line2, &st) == 0)
+		size = 0;
+		get_next_line(parse, buf, &line);
+		if ((parse->tab[j] = ft_count_nbr(&line, parse->tab[j])) == NULL)
 			return (0);
+		if (ft_check_map(parse->tab) == 0)
+			return (0);
+		j++;
 	}
-	if (ft_check_last_line(line1, line2) == 0)
-		return (0);
 	return (1);
 }
