@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/25 14:18:33 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/25 14:18:48 by lpascrea         ###   ########.fr       */
+/*   Created: 2020/11/10 12:15:08 by lpascrea          #+#    #+#             */
+/*   Updated: 2021/01/27 11:20:55 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/ft.h"
+#include "../includes/ft.h"
 
 static int		ft_count_words(char *s, char c)
 {

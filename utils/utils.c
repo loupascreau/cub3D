@@ -6,11 +6,11 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 13:30:19 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/26 11:13:36 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/01/27 11:20:37 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/ft.h"
+#include "../includes/ft.h"
 
 int		ft_strlen(char *str)
 {
@@ -22,13 +22,13 @@ int		ft_strlen(char *str)
 	return (i);
 }
 
-int		ft_atoi(char *str, parse_t *parse)
+int		ft_atoi(char *str)
 {
 	int	i;
 	int sign;
 	int result;
 
-	i = parse->i;
+	i = 0;
 	sign = 1;
 	result = 0;
 	while (str[i] == '\n' || str[i] == '\t' || str[i] == '\v'
@@ -45,7 +45,6 @@ int		ft_atoi(char *str, parse_t *parse)
 		result = result * 10 + (str[i] - 48);
 		i++;
 	}
-	parse->i += i - parse->i;
 	return (result * sign);
 }
 

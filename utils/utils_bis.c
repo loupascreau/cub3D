@@ -1,37 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   coordinates.c                                      :+:      :+:    :+:   */
+/*   utils_bis.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/25 12:23:18 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/25 13:49:02 by lpascrea         ###   ########.fr       */
+/*   Created: 2021/01/26 15:01:17 by lpascrea          #+#    #+#             */
+/*   Updated: 2021/01/27 11:20:48 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/ft.h"
+#include "../includes/ft.h"
 
-int		ft_find_player(parse_t *parse)
+void	ft_free(char *line, char **tmp)
 {
-	int	i;
-	int	j;
-
-	j = 0;
-	while (parse->tab[j])
-	{
-		i = 0;
-		while (parse->tab[j][i])
-		{
-			if (parse->tab[j][i] == 'N' || parse->tab[j][i] == 'S' || parse->tab[j][i] == 'E' || parse->tab[j][i] == 'W')
-			{
-				parse->posX = i;
-				parse->posY = j;
-				return (1);
-			}
-			i++;
-		}
-		j++;
-	}
-	return (0);
+	free(line);
+	line = NULL;
+	free(tmp);
+	tmp = NULL;
 }

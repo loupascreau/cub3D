@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:23:26 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/26 10:53:22 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/01/27 11:14:32 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,13 @@ typedef struct		data_s
 	void	*win;
 }					data_t;
 
-typedef struct		index_s
+typedef struct		cast_s
 {
-	int		i;
-	int		j;
-	int		check;
-}					index_t;
+	int		map_width;
+	int		map_height;
+	int		screen_width;
+	int		screen_height;
+}					cast_t;
 
 typedef struct		parse_s
 {
@@ -60,30 +61,36 @@ typedef struct		parse_s
 	char	**tab;
 	int		posX;
 	int		posY;
+	int		longest;
 }					parse_t;
 
-int		ft_atoi(char *str, parse_t *parse);
+int		ft_atoi(char *str);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strcpy(char *dest, char *src);
 char	*ft_putnbr_base(int nbr, char *tab, int i);
 int		ft_strlen(char *str);
+char	**ft_split(char const *s, char c);
 int		ft_check_argv(char *argv);
 void	ft_init(parse_t *parse);
-void	ft_list_params(char *buf, parse_t *parse);
-void	ft_fill_ea(char *buf, parse_t *parse);
-void	ft_fill_we(char *buf, parse_t *parse);
-void	ft_fill_so(char *buf, parse_t *parse);
-void	ft_fill_no(char *buf, parse_t *parse);
-void	ft_fill_x_y(char *buf, parse_t *parse);
-void	ft_fill_s(char *buf, parse_t *parse);
-void	ft_fill_f(char *buf, parse_t *parse);
-void	ft_fill_c(char *buf, parse_t *parse);
+int		ft_list_params_textures(char *buf, parse_t *parse);
+int		ft_list_params_colors_xy(char *buf, parse_t *parse);
+int		ft_fill_ea(char *buf, parse_t *parse);
+int		ft_fill_we(char *buf, parse_t *parse);
+int		ft_fill_so(char *buf, parse_t *parse);
+int		ft_fill_no(char *buf, parse_t *parse);
+int		ft_fill_x_y(char *buf, parse_t *parse);
+int		ft_fill_s(char *buf, parse_t *parse);
+int		ft_fill_f(char *buf, parse_t *parse);
+int		ft_fill_c(char *buf, parse_t *parse);
+void	ft_fill_fc(char **str, char ***tmp2);
+void	ft_free(char *line, char **tmp);
 int		ft_read_map(parse_t *parse);
 int		ft_find_player(parse_t *parse);
 void	ft_last(parse_t *parse);
 int		ft_map_at_end(char *buf, parse_t *parse);
 void	ft_count_line(char *buf, parse_t *parse, char ***tab);
-char	*ft_count_nbr(char **line, char *tab);
+char	*ft_count_nbr(char **line, char *tab, parse_t *parse);
+void	ft_fill_empty(char *tab, parse_t *parse);
 int		ft_parse_map(char *buf, parse_t *parse);
 int		ft_check_map(char **tab);
 int		get_next_line(parse_t *parse, char *buf, char **line);

@@ -1,13 +1,15 @@
 SRCS		=	main.c \
-				utils.c \
-				parse_file.c \
-				colors.c \
-				textures.c \
-				parse_map.c \
-				check_map.c \
+				./parse/parse_file.c \
+				./parse/colors.c \
+				./parse/textures.c \
+				./parse/parse_map.c \
+				./parse/check_map.c \
+				./parse/coordinates.c \
 				./get_next_line/get_next_line.c \
 				./get_next_line/get_next_line_utils.c \
-				coordinates.c \
+				./utils/utils.c \
+				./utils/utils_bis.c \
+				./utils/ft_split.c \
 
 OBJS		=	${SRCS:.c=.o}
 

@@ -6,11 +6,11 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 11:18:45 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/26 11:16:27 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/01/27 11:23:19 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/ft.h"
+#include "../includes/ft.h"
 
 void	ft_init(parse_t *parse)
 {
@@ -25,6 +25,7 @@ void	ft_init(parse_t *parse)
 	parse->last = 0;
 	parse->posX = 0;
 	parse->posY = 0;
+	parse->longest = 0;
 }
 
 int		ft_map_at_end(char *buf, parse_t *parse)
@@ -38,35 +39,65 @@ int		ft_map_at_end(char *buf, parse_t *parse)
 				parse->i++;
 			while (buf[parse->i - 1] != '\n')
 				parse->i--;
-			if (ft_parse_map(buf, parse) == 0) 
+			if (ft_parse_map(buf, parse) == 0)
+			{
+				printf("Error\nMap isn't closed\n");
 				return (0);
+			}
+			return (1);
 		}
-		else
+	}
+	return (0);
+}
+
+int		ft_list_params_textures(char *buf, parse_t *parse)
+{
+	if ((buf[parse->i] == 'N' && buf[parse->i + 1] == 'O') && parse->NO == 0)
+	{
+		if (ft_fill_no(buf, parse) == 0)
 			return (0);
 	}
-	else
-		return (0);
+	if ((buf[parse->i] == 'S' && buf[parse->i + 1] == 'O') && parse->SO == 0)
+	{
+		if (ft_fill_so(buf, parse) == 0)
+			return (0);
+	}
+	if ((buf[parse->i] == 'W' && buf[parse->i + 1] == 'E') && parse->WE == 0)
+	{
+		if (ft_fill_we(buf, parse) == 0)
+			return (0);
+	}
+	if ((buf[parse->i] == 'E' && buf[parse->i + 1] == 'A') && parse->EA == 0)
+	{
+		if (ft_fill_ea(buf, parse) == 0)
+			return (0);
+	}
 	return (1);
 }
 
-void	ft_list_params(char *buf, parse_t *parse)
+int		ft_list_params_colors_xy(char *buf, parse_t *parse)
 {
-	if (buf[parse->i] == 'R' && parse->R == 0)
-		ft_fill_x_y(buf, parse);
-	if ((buf[parse->i] == 'N' && buf[parse->i + 1] == 'O') && parse->NO == 0)
-		ft_fill_no(buf, parse);
-	if ((buf[parse->i] == 'S' && buf[parse->i + 1] == 'O') && parse->SO == 0)
-		ft_fill_so(buf, parse);
-	if ((buf[parse->i] == 'W' && buf[parse->i + 1] == 'E') && parse->WE == 0)
-		ft_fill_we(buf, parse);
-	if ((buf[parse->i] == 'E' && buf[parse->i + 1] == 'A') && parse->EA == 0)
-		ft_fill_ea(buf, parse);
 	if (buf[parse->i] == 'S' && parse->S == 0)
-		ft_fill_s(buf, parse);
+	{
+		if (ft_fill_s(buf, parse) == 0)
+			return (0);
+	}
+	if (buf[parse->i] == 'R' && parse->R == 0)
+	{
+		if (ft_fill_x_y(buf, parse) == 0)
+			return (0);
+	}
 	if (buf[parse->i] == 'F' && parse->F == 0)
-		ft_fill_f(buf, parse);
+	{
+		if (ft_fill_f(buf, parse) == 0)
+			return (0);
+	}
 	if (buf[parse->i] == 'C' && parse->C == 0)
-		ft_fill_c(buf, parse);
+	{
+		if (ft_fill_c(buf, parse) == 0)
+			return (0);
+	}
+	return (1);
 }
 
 int		ft_read_map(parse_t *parse)
@@ -81,24 +112,28 @@ int		ft_read_map(parse_t *parse)
 	buf[ret] = '\0';
 	while (buf[parse->i])
 	{
-		ft_list_params(buf, parse);
+		if (ft_list_params_textures(buf, parse) == 0)
+			return (0);
+		if (ft_list_params_colors_xy(buf, parse) == 0)
+			return (0);
 		parse->i++;
 	}
 	if (ft_map_at_end(buf, parse) == 0)
-	{
-		printf("Error\nMap isn't closed or she's not at end\n");
 		return (0);
-	}
-	if	(ft_find_player(parse) == 0)
-	{
-		printf("Error\nYour map is missing starter coordinates\n");
+	if (ft_find_player(parse) == 0)
 		return (0);
-	}
 	int i = 0;
-	while (parse->tab[i])
+	int	j = 0;
+	while (parse->tab[j])
 	{
-		printf("tab[%d] =	%s\n", i, parse->tab[i]);
-		i++;
+		i = 0;
+		while (parse->tab[j][i])
+		{
+			printf("%c", parse->tab[j][i]);
+			i++;
+		}
+		printf("\n");
+		j++;
 	}
 	printf("coordinates begin = [%d, %d]\n", parse->posY, parse->posX);
 	printf("x = %d, y = %d\n", parse->x, parse->y);
