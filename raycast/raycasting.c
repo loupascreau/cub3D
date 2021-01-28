@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:29:45 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/28 12:57:59 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/01/28 19:15:38 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,17 +81,22 @@ void	ft_raycasting(cast_t *cast, data_t *data)
 		cast->draw_end = cast->line_height / 2 + cast->screen_height / 2;
 		if (cast->draw_end >= cast->screen_height)
 			cast->draw_end = cast->screen_height - 1;
-		switch(cast->map[cast->mapY][cast->mapX])
-		{
-			case 1:	cast->color = 0xFF0000;	break;
-			case 2:	cast->color = 0x00FF00;	break;
-			case 3:	cast->color = 0x0000FF;	break;
-			case 4:	cast->color = 0xFFFFFF;	break;
-			default:cast->color = 0xFFFF00;	break;
-		}
 		if (cast->side == 1)
-			cast->color = cast->color / 2;
+		{
+			if (cast->ray_dirY < 0)
+				cast->color = 0xFF0000;
+			else
+				cast->color = 0x00FF00;
+		}
+		else
+		{
+			if (cast->ray_dirX < 0)
+				cast->color = 0x0000FF;
+			else
+				cast->color = 0xFFFF00;
+		}
 		my_mlx_pixel_put(data, x, cast->draw_start, cast->draw_end, cast->color);
 		x++;
 	}
+
 }

@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 11:30:53 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/28 15:08:59 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/01/28 18:43:08 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	ft_set_params(parse_t *parse, cast_t *cast)
 	cast->posY = parse->posY;
 	cast->planeX = 0;
 	cast->planeY = 0.66;
-	cast->time = 0;
-	cast->old_time = 0;
 }
 
 void	ft_setup_data_parse_cast(parse_t *parse, cast_t *cast)

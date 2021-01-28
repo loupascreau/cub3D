@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 11:46:45 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/28 15:09:57 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/01/28 19:15:32 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int		main(int argc, char **argv)
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixels, &data.size_line, &data.endian);
 	ft_raycasting(&cast, &data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
+	mlx_hook(data.win, 2, 1L << 0, ft_key_hook, &cast);
 	mlx_loop(data.mlx);
 	return (0);
 }

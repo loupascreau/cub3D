@@ -13,6 +13,7 @@ SRCS		=	main.c \
 				./raycast/setup_parse.c \
 				./raycast/raycasting.c \
 				./raycast/my_mlx_pixel_put.c \
+				./hook/key_press.c \
 
 OBJS		=	${SRCS:.c=.o}
 

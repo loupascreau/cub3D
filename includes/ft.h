@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:23:26 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/28 12:08:50 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/01/28 19:07:03 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ typedef struct		cast_s
 	double	posY;
 	double	planeX;
 	double	planeY;
-	double	time;
-	double	old_time;
 	double	cameraX;
 	double	ray_dirX;
 	double	ray_dirY;
@@ -140,5 +138,6 @@ void	ft_setup_data_parse_cast(parse_t *parse, cast_t *cast);
 void	ft_set_params(parse_t *parse, cast_t *cast);
 void	ft_raycasting(cast_t *cast, data_t *data);
 void	my_mlx_pixel_put(data_t *data, int x, int draw_start, int draw_end, int color);
+int		ft_key_hook(int key, cast_t *cast);
 
 #endif
