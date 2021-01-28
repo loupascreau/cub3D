@@ -10,6 +10,9 @@ SRCS		=	main.c \
 				./utils/utils.c \
 				./utils/utils_bis.c \
 				./utils/ft_split.c \
+				./raycast/setup_parse.c \
+				./raycast/raycasting.c \
+				./raycast/my_mlx_pixel_put.c \
 
 OBJS		=	${SRCS:.c=.o}
 

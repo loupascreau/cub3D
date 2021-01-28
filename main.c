@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 11:46:45 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/27 11:20:00 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/01/28 15:09:57 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,21 @@ int		ft_argc_argv(int argc, char *argv)
 int		main(int argc, char **argv)
 {
 	parse_t		parse;
-//	cast_t		cast;
-//	data_t		data;
+	cast_t		cast;
+	data_t		data;
 
 	if (ft_argc_argv(argc, argv[1]) == 0)
 		return (0);
 	parse.fd = open(argv[1], O_RDONLY);
 	if (ft_read_map(&parse) == 0)
 		return (0);
-//	ft_setup_data_parse_cast(&parse, &cast);
-//	data.mlx = mlx_init();
-//	data.win = mlx_new_window(data.mlx, parse.x, parse.y, "cub3D");
-//	mlx_loop(data.mlx);
+	ft_setup_data_parse_cast(&parse, &cast);
+	data.mlx = mlx_init();
+	data.win = mlx_new_window(data.mlx, parse.x, parse.y, "cub3D");
+	data.img = mlx_new_image(data.mlx, parse.x, parse.y);
+	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixels, &data.size_line, &data.endian);
+	ft_raycasting(&cast, &data);
+	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
+	mlx_loop(data.mlx);
 	return (0);
 }

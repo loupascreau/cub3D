@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:23:26 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/27 11:14:32 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/01/28 12:08:50 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <math.h>
 # include "../minilibx-linux/mlx.h"
 # define BUFFER_SIZE 4096
 
@@ -26,6 +27,11 @@ typedef struct		data_s
 {
 	void	*mlx;
 	void	*win;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixels;
+	int		size_line;
+	int		endian;
 }					data_t;
 
 typedef struct		cast_s
@@ -34,6 +40,33 @@ typedef struct		cast_s
 	int		map_height;
 	int		screen_width;
 	int		screen_height;
+	int		**map;
+	double	dirX;
+	double	dirY;
+	double	posX;
+	double	posY;
+	double	planeX;
+	double	planeY;
+	double	time;
+	double	old_time;
+	double	cameraX;
+	double	ray_dirX;
+	double	ray_dirY;
+	int		mapX;
+	int		mapY;
+	double	side_distX;
+	double	side_distY;
+	double	delta_distX;
+	double	delta_distY;
+	double	perp_wall_dist;
+	int		stepX;
+	int		stepY;
+	int		hit;
+	int		side;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	int		color;
 }					cast_t;
 
 typedef struct		parse_s
@@ -62,6 +95,9 @@ typedef struct		parse_s
 	int		posX;
 	int		posY;
 	int		longest;
+	int		height;
+	int		dirX;
+	int		dirY;
 }					parse_t;
 
 int		ft_atoi(char *str);
@@ -86,6 +122,7 @@ void	ft_fill_fc(char **str, char ***tmp2);
 void	ft_free(char *line, char **tmp);
 int		ft_read_map(parse_t *parse);
 int		ft_find_player(parse_t *parse);
+void	ft_set_direction(parse_t *parse, char c);
 void	ft_last(parse_t *parse);
 int		ft_map_at_end(char *buf, parse_t *parse);
 void	ft_count_line(char *buf, parse_t *parse, char ***tab);
@@ -99,5 +136,9 @@ char	*ft_strjoin(char *s1, char *s2);
 int		ft_line_found(char *tab);
 int		ft_fill_line(char **tab, char **line, int var, parse_t *parse);
 int		ft_check_all(char **tab, char **line, parse_t *parse, char *buf);
+void	ft_setup_data_parse_cast(parse_t *parse, cast_t *cast);
+void	ft_set_params(parse_t *parse, cast_t *cast);
+void	ft_raycasting(cast_t *cast, data_t *data);
+void	my_mlx_pixel_put(data_t *data, int x, int draw_start, int draw_end, int color);
 
 #endif

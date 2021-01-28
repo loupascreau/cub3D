@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 10:49:35 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/27 11:23:25 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/01/27 11:35:43 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	ft_count_line(char *buf, parse_t *parse, char ***tab)
 			len++;
 		j++;
 	}
+	parse->height = i;
 	if (!(*tab = (char **)malloc(sizeof(char *) * i + 1)))
 		return ;
 }

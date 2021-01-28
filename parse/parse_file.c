@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 11:18:45 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/27 11:23:19 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/01/27 14:31:07 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ void	ft_init(parse_t *parse)
 	parse->posX = 0;
 	parse->posY = 0;
 	parse->longest = 0;
+	parse->height = 0;
+	parse->dirX = 0;
+	parse->dirY = 0;
 }
 
 int		ft_map_at_end(char *buf, parse_t *parse)
@@ -122,20 +125,6 @@ int		ft_read_map(parse_t *parse)
 		return (0);
 	if (ft_find_player(parse) == 0)
 		return (0);
-	int i = 0;
-	int	j = 0;
-	while (parse->tab[j])
-	{
-		i = 0;
-		while (parse->tab[j][i])
-		{
-			printf("%c", parse->tab[j][i]);
-			i++;
-		}
-		printf("\n");
-		j++;
-	}
-	printf("coordinates begin = [%d, %d]\n", parse->posY, parse->posX);
 	printf("x = %d, y = %d\n", parse->x, parse->y);
 	printf("parse->no = %s\n", parse->no);
 	printf("parse->so = %s\n", parse->so);
