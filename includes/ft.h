@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:23:26 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/28 19:07:03 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/01/29 16:01:03 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,6 @@
 # include <math.h>
 # include "../minilibx-linux/mlx.h"
 # define BUFFER_SIZE 4096
-
-typedef struct		data_s
-{
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixels;
-	int		size_line;
-	int		endian;
-}					data_t;
 
 typedef struct		cast_s
 {
@@ -65,6 +54,21 @@ typedef struct		cast_s
 	int		draw_start;
 	int		draw_end;
 	int		color;
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixels;
+	int		size_line;
+	int		endian;
+	int		x;
+	int		floor;
+	int		ceil;
+	double	old_dirX;
+	double	old_planeX;
+	double	pi;
+	int		sizex;
+	int		sizey;
 }					cast_t;
 
 typedef struct		parse_s
@@ -104,6 +108,11 @@ char	*ft_strcpy(char *dest, char *src);
 char	*ft_putnbr_base(int nbr, char *tab, int i);
 int		ft_strlen(char *str);
 char	**ft_split(char const *s, char c);
+int		ft_pos_base(char c, char *base);
+int		ft_atoi_base(char *nbr, char *base);
+int		ft_check_base(char *base);
+char	*ft_putnbr_in_base(int nbr, char *base, char *final, int i);
+char	*ft_convert_base(char *nbr, char *base_from, char *base_to);
 int		ft_check_argv(char *argv);
 void	ft_init(parse_t *parse);
 int		ft_list_params_textures(char *buf, parse_t *parse);
@@ -136,8 +145,9 @@ int		ft_fill_line(char **tab, char **line, int var, parse_t *parse);
 int		ft_check_all(char **tab, char **line, parse_t *parse, char *buf);
 void	ft_setup_data_parse_cast(parse_t *parse, cast_t *cast);
 void	ft_set_params(parse_t *parse, cast_t *cast);
-void	ft_raycasting(cast_t *cast, data_t *data);
-void	my_mlx_pixel_put(data_t *data, int x, int draw_start, int draw_end, int color);
+void	ft_raycasting(cast_t *cast);
+void	my_mlx_pixel_put(cast_t *cast, int x, int draw_start, int draw_end, int color);
 int		ft_key_hook(int key, cast_t *cast);
+int		ft_pixel_put(cast_t *cast);
 
 #endif

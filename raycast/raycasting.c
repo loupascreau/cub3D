@@ -6,20 +6,18 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:29:45 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/28 19:15:38 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/01/29 14:54:41 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft.h"
 
-void	ft_raycasting(cast_t *cast, data_t *data)
+void	ft_raycasting(cast_t *cast)
 {
-	int	x;
-
-	x = 0;
-	while (x < cast->screen_width)
+	cast->x = 0;
+	while (cast->x < cast->screen_width)
 	{
-		cast->cameraX = 2 * x / (double)cast->screen_width - 1;
+		cast->cameraX = 2 * cast->x / (double)cast->screen_width - 1;
 		cast->ray_dirX = cast->dirX + cast->planeX * cast->cameraX;
 		cast->ray_dirY = cast->dirY + cast->planeY * cast->cameraX;
 		cast->mapX = cast->posX;
@@ -95,8 +93,7 @@ void	ft_raycasting(cast_t *cast, data_t *data)
 			else
 				cast->color = 0xFFFF00;
 		}
-		my_mlx_pixel_put(data, x, cast->draw_start, cast->draw_end, cast->color);
-		x++;
+		my_mlx_pixel_put(cast, cast->x, cast->draw_start, cast->draw_end, cast->color);
+		cast->x++;
 	}
-
 }

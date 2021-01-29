@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 14:38:06 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/27 11:23:09 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/01/29 11:00:08 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,13 @@ void	ft_last(parse_t *parse)
 
 void	ft_fill_fc(char **str, char ***tmp2)
 {
-	(*str)[0] = '0';
-	(*str)[1] = 'x';
-	*str = ft_putnbr_base(ft_atoi((*tmp2)[0]), *str, 4 - 1);
-	*str = ft_putnbr_base(ft_atoi((*tmp2)[1]), *str, 6 - 1);
-	*str = ft_putnbr_base(ft_atoi((*tmp2)[2]), *str, 8 - 1);
-	(*str)[8] = '\0';
+	*str = ft_putnbr_base(ft_atoi((*tmp2)[0]), *str, 2 - 1);
+	*str = ft_putnbr_base(ft_atoi((*tmp2)[1]), *str, 4 - 1);
+	*str = ft_putnbr_base(ft_atoi((*tmp2)[2]), *str, 6 - 1);
+	(*str)[6] = '\0';
 	free(*tmp2);
 	tmp2 = NULL;
+	*str = ft_convert_base(*str, "0123456789ABCDEF", "0123456789");
 }
 
 int		ft_fill_s(char *buf, parse_t *parse)
@@ -74,7 +73,7 @@ int		ft_fill_f(char *buf, parse_t *parse)
 		return (0);
 	}
 	tmp2 = ft_split(tmp[1], ',');
-	if (!(parse->f = (char *)malloc(sizeof(char) * (8 + 1))))
+	if (!(parse->f = (char *)malloc(sizeof(char) * (6 + 1))))
 		return (0);
 	ft_fill_fc(&parse->f, &tmp2);
 	ft_free(line, tmp);
@@ -102,7 +101,7 @@ int		ft_fill_c(char *buf, parse_t *parse)
 		return (0);
 	}
 	tmp2 = ft_split(tmp[1], ',');
-	if (!(parse->c = (char *)malloc(sizeof(char) * (8 + 1))))
+	if (!(parse->c = (char *)malloc(sizeof(char) * (6 + 1))))
 		return (0);
 	ft_fill_fc(&parse->c, &tmp2);
 	ft_free(line, tmp);

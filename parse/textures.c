@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 11:19:56 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/27 11:23:31 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/01/29 15:08:27 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int		ft_fill_x_y(char *buf, parse_t *parse)
 	while (buf[parse->i + i] != '\n')
 		i++;
 	line = ft_substr(buf, parse->i, i);
+	parse->i += ft_strlen(line);
 	tmp = ft_split(line, ' ');
 	if (tmp[3])
 	{

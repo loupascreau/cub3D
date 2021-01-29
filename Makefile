@@ -5,6 +5,8 @@ SRCS		=	main.c \
 				./parse/parse_map.c \
 				./parse/check_map.c \
 				./parse/coordinates.c \
+				./parse/convert/ft_convert_base.c \
+				./parse/convert/ft_convert_base2.c \
 				./get_next_line/get_next_line.c \
 				./get_next_line/get_next_line_utils.c \
 				./utils/utils.c \
@@ -12,8 +14,7 @@ SRCS		=	main.c \
 				./utils/ft_split.c \
 				./raycast/setup_parse.c \
 				./raycast/raycasting.c \
-				./raycast/my_mlx_pixel_put.c \
-				./hook/key_press.c \
+				./raycast/pixel_put.c \
 
 OBJS		=	${SRCS:.c=.o}
 
