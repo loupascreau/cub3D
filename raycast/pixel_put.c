@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 11:48:05 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/29 14:51:04 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/01 19:01:11 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,21 @@ int		ft_key_hook(int key, cast_t *cast)
 		if (cast->map[(int)(cast->posY - cast->dirY)][(int)cast->posX] == 0)
 			cast->posY -= cast->dirY;
 	}
+	if (key == 100)
+	{
+		if (cast->map[(int)(cast->posY + cast->planeY)][(int)cast->posX] == 0)
+			cast->posY += cast->planeY;
+		if (cast->map[(int)cast->posY][(int)(cast->posX + cast->planeX)] == 0)
+			cast->posX += cast->planeX;
+	}
 	if (key == 97)
+	{
+		if (cast->map[(int)(cast->posY - cast->planeY)][(int)cast->posX] == 0)
+			cast->posY -= cast->planeY;
+		if (cast->map[(int)cast->posY][(int)(cast->posX - cast->planeX)] == 0)
+			cast->posX -= cast->planeX;
+	}
+	if (key == 65361)
 	{
 		cast->old_dirX = cast->dirX;
 		cast->dirX = (cast->dirX * cos(5 * (cast->pi / 180))) - (cast->dirY * sin(5 * (cast->pi / 180)));
@@ -44,7 +58,7 @@ int		ft_key_hook(int key, cast_t *cast)
 		cast->planeX = (cast->planeX * cos(5 * (cast->pi / 180))) - (cast->planeY * sin(5 * (cast->pi / 180)));
 		cast->planeY = (cast->old_planeX * sin(5 * (cast->pi / 180))) + (cast->planeY * cos(5 * (cast->pi / 180)));
 	}
-	if (key == 100)
+	if (key == 65363)
 	{
 		cast->old_dirX = cast->dirX;
 		cast->dirX = (cast->dirX * cos(-(5 * (cast->pi / 180)))) - (cast->dirY * sin(-(5 * (cast->pi / 180))));
@@ -52,6 +66,15 @@ int		ft_key_hook(int key, cast_t *cast)
 		cast->old_planeX = cast->planeX;
 		cast->planeX = (cast->planeX * cos(-(5 * (cast->pi / 180)))) - (cast->planeY * sin(-(5 * (cast->pi / 180))));
 		cast->planeY = (cast->old_planeX * sin(-(5 * (cast->pi / 180)))) + (cast->planeY * cos(-(5 * (cast->pi / 180))));
+	}
+	if (key == 65307)
+	{
+		//exit(0);
+		mlx_loop_end(cast->mlx);
+		mlx_destroy_image(cast->mlx, cast->img);
+		mlx_destroy_window(cast->mlx, cast->win);
+		mlx_destroy_display(cast->mlx);
+		free(cast->mlx);
 	}
 	return (0);
 }

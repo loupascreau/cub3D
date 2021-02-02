@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 11:30:53 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/29 16:03:16 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/01 14:39:38 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	ft_set_params(parse_t *parse, cast_t *cast)
 	cast->ceil = ft_atoi(parse->c);
 	free(parse->f);
 	free(parse->c);
+	cast->tex_width = 64;
+	cast->tex_height = 64;
 }
 
 void	ft_setup_data_parse_cast(parse_t *parse, cast_t *cast)

@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:23:26 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/29 16:01:03 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/01 14:38:42 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ typedef struct		cast_s
 	double	pi;
 	int		sizex;
 	int		sizey;
+	int		tex_width;
+	int		tex_height;
 }					cast_t;
 
 typedef struct		parse_s
