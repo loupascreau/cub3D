@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 11:46:45 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/03 14:57:32 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/03 18:51:20 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int		ft_check_argv(char *argv)
 
 int		ft_check_save(char *str)
 {
+	if (!str)
+		return (1);
 	if (ft_strlen(str) != 6)
 		return (0);
 	if (str[0] != '-' && str[1] != '-')
