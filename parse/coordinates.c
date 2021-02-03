@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 12:23:18 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/27 14:21:20 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/03 12:10:55 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,5 @@ int		ft_find_player(parse_t *parse)
 		}
 		j++;
 	}
-	printf("Error\nYour map is missing starter coordinates");
-	printf(" or she's not at end\n");
-	return (0);
+	return (ft_error(3));
 }

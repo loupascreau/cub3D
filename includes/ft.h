@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:23:26 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/01 14:38:42 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/03 14:45:49 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ typedef struct		parse_s
 	int		height;
 	int		dirX;
 	int		dirY;
+	int		letter;
 }					parse_t;
 
 int		ft_atoi(char *str);
@@ -128,28 +129,33 @@ int		ft_fill_s(char *buf, parse_t *parse);
 int		ft_fill_f(char *buf, parse_t *parse);
 int		ft_fill_c(char *buf, parse_t *parse);
 void	ft_fill_fc(char **str, char ***tmp2);
+int		ft_is_nbr(char *s1);
 void	ft_free(char *line, char **tmp);
 int		ft_read_map(parse_t *parse);
 int		ft_find_player(parse_t *parse);
 void	ft_set_direction(parse_t *parse, char c);
 void	ft_last(parse_t *parse);
 int		ft_map_at_end(char *buf, parse_t *parse);
-void	ft_count_line(char *buf, parse_t *parse, char ***tab);
+int		ft_count_line(char *buf, parse_t *parse, char ***tab);
 char	*ft_count_nbr(char **line, char *tab, parse_t *parse);
-void	ft_fill_empty(char *tab, parse_t *parse);
+void	ft_fill_empty(char **tab, parse_t *parse);
 int		ft_parse_map(char *buf, parse_t *parse);
-int		ft_check_map(char **tab);
+int		ft_check_value(char c, int *letter);
+int		ft_check_map(char **tab, int *letter);
 int		get_next_line(parse_t *parse, char *buf, char **line);
 char	*ft_strdup(char *s);
 char	*ft_strjoin(char *s1, char *s2);
 int		ft_line_found(char *tab);
 int		ft_fill_line(char **tab, char **line, int var, parse_t *parse);
 int		ft_check_all(char **tab, char **line, parse_t *parse, char *buf);
-void	ft_setup_data_parse_cast(parse_t *parse, cast_t *cast);
+int		ft_engine(parse_t *parse, cast_t *cast);
+int		ft_setup_data_parse_cast(parse_t *parse, cast_t *cast);
 void	ft_set_params(parse_t *parse, cast_t *cast);
 void	ft_raycasting(cast_t *cast);
 void	my_mlx_pixel_put(cast_t *cast, int x, int draw_start, int draw_end, int color);
 int		ft_key_hook(int key, cast_t *cast);
 int		ft_pixel_put(cast_t *cast);
+int		ft_error(int nbr);
+int		ft_error_parsing(int nbr);
 
 #endif

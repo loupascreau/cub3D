@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 11:18:45 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/29 15:06:03 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/03 14:33:00 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_init(parse_t *parse)
 	parse->height = 0;
 	parse->dirX = 0;
 	parse->dirY = 0;
+	parse->letter = 0;
 }
 
 int		ft_map_at_end(char *buf, parse_t *parse)
@@ -43,14 +44,11 @@ int		ft_map_at_end(char *buf, parse_t *parse)
 			while (buf[parse->i - 1] != '\n')
 				parse->i--;
 			if (ft_parse_map(buf, parse) == 0)
-			{
-				printf("Error\nMap isn't closed\n");
 				return (0);
-			}
 			return (1);
 		}
 	}
-	return (0);
+	return (ft_error_parsing(9));
 }
 
 int		ft_list_params_textures(char *buf, parse_t *parse)
@@ -109,8 +107,10 @@ int		ft_read_map(parse_t *parse)
 	int		ret;
 
 	ft_init(parse);
+	if (parse->fd < 0)
+		return (ft_error(2));
 	if ((ret = read(parse->fd, buf, BUFFER_SIZE)) < 1)
-		return (0);
+		return (ft_error(5));
 	parse->i = 0;
 	buf[ret] = '\0';
 	while (buf[parse->i])

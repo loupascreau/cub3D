@@ -2,6 +2,7 @@ SRCS		=	main.c \
 				./parse/parse_file.c \
 				./parse/colors.c \
 				./parse/textures.c \
+				./parse/check_digit.c \
 				./parse/parse_map.c \
 				./parse/check_map.c \
 				./parse/coordinates.c \
@@ -15,6 +16,8 @@ SRCS		=	main.c \
 				./raycast/setup_parse.c \
 				./raycast/raycasting.c \
 				./raycast/pixel_put.c \
+				./errors/error.c \
+				./engine/engine.c \
 
 OBJS		=	${SRCS:.c=.o}
 

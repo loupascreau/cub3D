@@ -6,13 +6,13 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 10:49:35 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/29 15:00:51 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/03 14:05:58 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft.h"
 
-void	ft_count_line(char *buf, parse_t *parse, char ***tab)
+int		ft_count_line(char *buf, parse_t *parse, char ***tab)
 {
 	int	j;
 	int	i;
@@ -36,7 +36,8 @@ void	ft_count_line(char *buf, parse_t *parse, char ***tab)
 	}
 	parse->height = i;
 	if (!(*tab = (char **)malloc(sizeof(char *) * i + 1)))
-		return ;
+		return (0);
+	return (1);
 }
 
 char	*ft_count_nbr(char **line, char *tab, parse_t *parse)
@@ -63,20 +64,26 @@ char	*ft_count_nbr(char **line, char *tab, parse_t *parse)
 	return (tab);
 }
 
-void	ft_fill_empty(char *tab, parse_t *parse)
+void	ft_fill_empty(char **tab, parse_t *parse)
 {
 	int i;
+	int	j;
 
-	i = 0;
-	while (i < parse->longest)
+	j = 0;
+	while (tab[j])
 	{
-		if (tab[i] == ' ')
+		i = 0;
+		while (i < parse->longest)
 		{
-			tab[i] = '1';
-			i++;
+			if (tab[j][i] == ' ')
+			{
+				tab[j][i] = '1';
+				i++;
+			}
+			else
+				i++;
 		}
-		else
-			i++;
+		j++;
 	}
 }
 
@@ -88,17 +95,18 @@ int		ft_parse_map(char *buf, parse_t *parse)
 
 	j = 0;
 	line = 0;
-	ft_count_line(buf, parse, &parse->tab);
+	if (ft_count_line(buf, parse, &parse->tab) == 0)
+		return (ft_error(4));
 	while (buf[parse->i])
 	{
 		size = 0;
 		get_next_line(parse, buf, &line);
 		if ((parse->tab[j] = ft_count_nbr(&line, parse->tab[j], parse)) == NULL)
-			return (0);
-		if (ft_check_map(parse->tab) == 0)
-			return (0);
-		ft_fill_empty(parse->tab[j], parse);
+			return (ft_error(4));
 		j++;
 	}
+	if (ft_check_map(parse->tab, &parse->letter) == 0)
+		return (0);
+	ft_fill_empty(parse->tab, parse);
 	return (1);
 }
