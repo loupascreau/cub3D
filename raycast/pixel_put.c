@@ -6,16 +6,37 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/28 11:48:05 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/03 18:51:38 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/06 15:01:49 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft.h"
 
-int		ft_pixel_put(cast_t *cast)
+int		ft_expose(cast_t *cast)
 {
-	ft_raycasting(cast);
+	int	i;
+
+	i = 0;
+	cast->img = mlx_new_image(cast->mlx, cast->screen_width, cast->screen_height);
+	cast->addr = mlx_get_data_addr(cast->img, &cast->bits_per_pixels, &cast->size_line, &cast->endian);
+	while (i < cast->screen_width * (cast->screen_height / 2))
+		*(int *)&cast->addr[i++ * (cast->bits_per_pixels / 8)] = cast->ceil;
+	while (i < cast->screen_width * cast->screen_height)
+		*(int *)&cast->addr[i++ * (cast->bits_per_pixels / 8)] = cast->floor;
+	if (ft_raycasting(cast) == 0)
+		return (0);
 	mlx_put_image_to_window(cast->mlx, cast->win, cast->img, 0, 0);
+	return (1);
+}
+
+int		ft_close_window(cast_t *cast)
+{
+	mlx_loop_end(cast->mlx);
+	mlx_destroy_image(cast->mlx, cast->img);
+	mlx_destroy_window(cast->mlx, cast->win);
+	mlx_destroy_display(cast->mlx);
+	free(cast->mlx);
+	exit(0);
 	return (0);
 }
 
@@ -79,12 +100,14 @@ int		ft_key_hook(int key, cast_t *cast)
 	return (0);
 }
 
-void	my_mlx_pixel_put(cast_t *cast, int x, int draw_start, int draw_end, int color)
+/*void	my_mlx_pixel_put(cast_t *cast, int x, int draw_start, int draw_end, int color)
 {
 	char	*dst;
 	int		i;
 
 	i = 0;
+	(void)draw_end;
+	(void)color;
 	while (i < draw_start)
 	{
 		dst = &cast->addr[(i * cast->size_line) + (x * (cast->bits_per_pixels / 8))];
@@ -103,4 +126,4 @@ void	my_mlx_pixel_put(cast_t *cast, int x, int draw_start, int draw_end, int col
 		*(unsigned int*)dst = cast->floor;
 		draw_start++;
 	}
-}
+}*/

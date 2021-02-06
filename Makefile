@@ -16,6 +16,7 @@ SRCS		=	main.c \
 				./raycast/setup_parse.c \
 				./raycast/raycasting.c \
 				./raycast/pixel_put.c \
+				./raycast/textures.c \
 				./errors/error.c \
 				./engine/engine.c \
 

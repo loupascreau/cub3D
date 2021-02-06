@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 11:18:45 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/03 14:33:00 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/05 14:27:56 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,6 @@ int		ft_read_map(parse_t *parse)
 		parse->i++;
 	}
 	if (ft_map_at_end(buf, parse) == 0)
-		return (0);
-	if (ft_find_player(parse) == 0)
 		return (0);
 	printf("x = %d, y = %d\n", parse->x, parse->y);
 	printf("parse->no = %s\n", parse->no);

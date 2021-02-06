@@ -6,14 +6,16 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:29:45 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/01 12:29:23 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/06 15:20:16 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft.h"
 
-void	ft_raycasting(cast_t *cast)
+int		ft_raycasting(cast_t *cast)
 {
+	if (!(cast->buffer = (double *)malloc(sizeof(double) * cast->screen_width)))
+		return (ft_error(4));
 	cast->x = 0;
 	while (cast->x < cast->screen_width)
 	{
@@ -30,7 +32,7 @@ void	ft_raycasting(cast_t *cast)
 			cast->delta_distY = 0;
 		else
 			cast->delta_distY = fabs(1 / cast->ray_dirY);
-		cast->hit = 0;
+			//
 		if (cast->ray_dirX < 0)
 		{
 			cast->stepX = -1;
@@ -51,6 +53,8 @@ void	ft_raycasting(cast_t *cast)
 			cast->stepY = 1;
 			cast->side_distY = (cast->mapY + 1.0 - cast->posY) * cast->delta_distY;
 		}
+			//
+		cast->hit = 0;
 		while (cast->hit == 0)
 		{
 			if (cast->side_distX < cast->side_distY)
@@ -72,13 +76,10 @@ void	ft_raycasting(cast_t *cast)
 			cast->perp_wall_dist = (cast->mapX - cast->posX + (1 - cast->stepX) / 2) / cast->ray_dirX;
 		else
 			cast->perp_wall_dist = (cast->mapY - cast->posY + (1 - cast->stepY) / 2) / cast->ray_dirY;
-		cast->line_height = (int)(cast->screen_height / cast->perp_wall_dist);
-		cast->draw_start = (-cast->line_height) / 2 + cast->screen_height / 2;
-		if (cast->draw_start < 0)
-			cast->draw_start = 0;
-		cast->draw_end = cast->line_height / 2 + cast->screen_height / 2;
-		if (cast->draw_end >= cast->screen_height)
-			cast->draw_end = cast->screen_height - 1;
+		cast->buffer[cast->x] = cast->perp_wall_dist;
+			//
+		ft_textures(cast);
+			//
 		if (cast->side == 1)
 		{
 			if (cast->ray_dirY < 0)
@@ -93,7 +94,8 @@ void	ft_raycasting(cast_t *cast)
 			else
 				cast->color = 0xFFFF00;
 		}
-		my_mlx_pixel_put(cast, cast->x, cast->draw_start, cast->draw_end, cast->color);
+//		my_mlx_pixel_put(cast, cast->x, cast->draw_start, cast->draw_end, cast->color);
 		cast->x++;
 	}
+	return (1);
 }

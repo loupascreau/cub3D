@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 10:16:25 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/03 14:52:25 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/05 16:40:22 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int		ft_error(int nbr)
 		write(2, "Error\nYour choosen file is empty\n", 33);
 	if (nbr == 6)
 		write(2, "Error\nargv[2] must be '--save'\n", 31);
+	if (nbr == 7)
+		write(2, "Error\nProblem while initialize textures\n", 40);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:23:26 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/03 14:45:49 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/06 11:37:13 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,54 +23,74 @@
 # include "../minilibx-linux/mlx.h"
 # define BUFFER_SIZE 4096
 
+typedef struct		tex_s
+{
+	void			*img;
+	char			*addr;
+	int				bits_per_pixels;
+	int				size_line;
+	int				endian;
+}					tex_t;
+
 typedef struct		cast_s
 {
-	int		map_width;
-	int		map_height;
-	int		screen_width;
-	int		screen_height;
-	int		**map;
-	double	dirX;
-	double	dirY;
-	double	posX;
-	double	posY;
-	double	planeX;
-	double	planeY;
-	double	cameraX;
-	double	ray_dirX;
-	double	ray_dirY;
-	int		mapX;
-	int		mapY;
-	double	side_distX;
-	double	side_distY;
-	double	delta_distX;
-	double	delta_distY;
-	double	perp_wall_dist;
-	int		stepX;
-	int		stepY;
-	int		hit;
-	int		side;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
-	int		color;
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixels;
-	int		size_line;
-	int		endian;
-	int		x;
-	int		floor;
-	int		ceil;
-	double	old_dirX;
-	double	old_planeX;
-	double	pi;
-	int		sizex;
-	int		sizey;
-	int		tex_width;
-	int		tex_height;
+	int				map_width;
+	int				map_height;
+	int				screen_width;
+	int				screen_height;
+	int				**map;
+	double			dirX;
+	double			dirY;
+	double			posX;
+	double			posY;
+	double			planeX;
+	double			planeY;
+	double			cameraX;
+	double			ray_dirX;
+	double			ray_dirY;
+	int				mapX;
+	int				mapY;
+	double			side_distX;
+	double			side_distY;
+	double			delta_distX;
+	double			delta_distY;
+	double			perp_wall_dist;
+	int				stepX;
+	int				stepY;
+	int				hit;
+	int				side;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
+	unsigned int	color;
+	void			*mlx;
+	void			*win;
+	void			*img;
+	char			*addr;
+	int				bits_per_pixels;
+	int				size_line;
+	int				endian;
+	int				x;
+	int				floor;
+	int				ceil;
+	double			old_dirX;
+	double			old_planeX;
+	double			pi;
+	int				sizex;
+	int				sizey;
+	int				tex_width;
+	int				tex_height;
+	int				xcolor;
+	int				ycolor;
+	int				xycolor;
+	int				tex_num;
+	double			wallX;
+	int				texX;
+	int				texY;
+	double			step;
+	double			tex_pos;
+	tex_t			*tex;
+	double			*buffer;
 }					cast_t;
 
 typedef struct		parse_s
@@ -106,7 +126,10 @@ typedef struct		parse_s
 }					parse_t;
 
 int		ft_atoi(char *str);
+void	ft_bzero(void *s, size_t n);
+void	*ft_memset(void *s, int c, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+void	*ft_memcpy(void *dest, const void *src, size_t n);
 char	*ft_strcpy(char *dest, char *src);
 char	*ft_putnbr_base(int nbr, char *tab, int i);
 int		ft_strlen(char *str);
@@ -151,10 +174,14 @@ int		ft_check_all(char **tab, char **line, parse_t *parse, char *buf);
 int		ft_engine(parse_t *parse, cast_t *cast);
 int		ft_setup_data_parse_cast(parse_t *parse, cast_t *cast);
 void	ft_set_params(parse_t *parse, cast_t *cast);
-void	ft_raycasting(cast_t *cast);
+int		ft_raycasting(cast_t *cast);
+void	ft_textures(cast_t *cast);
+void	ft_texture_ns(cast_t *cast, tex_t *tex);
+void	ft_texture_ew(cast_t *cast, tex_t *tex);
 void	my_mlx_pixel_put(cast_t *cast, int x, int draw_start, int draw_end, int color);
 int		ft_key_hook(int key, cast_t *cast);
-int		ft_pixel_put(cast_t *cast);
+int		ft_close_window(cast_t *cast);
+int		ft_expose(cast_t *cast);
 int		ft_error(int nbr);
 int		ft_error_parsing(int nbr);
 
