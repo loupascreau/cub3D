@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 11:19:56 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/03 11:49:28 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/10 11:44:06 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,15 @@ int		ft_fill_x_y(char *buf, parse_t *parse)
 	line = ft_substr(buf, parse->i, i);
 	parse->i += ft_strlen(line);
 	tmp = ft_split(line, ' ');
-	if (tmp[3] || ft_is_nbr(tmp[1]) == 0 || ft_is_nbr(tmp[2]) == 0)
+	if (/*tmp[3] || */ft_is_nbr(tmp[1]) == 0 || ft_is_nbr(tmp[2]) == 0)
 		return (ft_error_parsing(4));
 	parse->x = ft_atoi(tmp[1]);
+	free(tmp[1]);
 	parse->y = ft_atoi(tmp[2]);
-	ft_free(line, tmp);
+	free(tmp[2]);
+	free(tmp[0]);
+	free(tmp);
+	free(line);
 	ft_last(parse);
 	parse->i = 0;
 	return (1);
@@ -47,11 +51,14 @@ int		ft_fill_no(char *buf, parse_t *parse)
 		i++;
 	line = ft_substr(buf, parse->i, i);
 	tmp = ft_split(line, ' ');
-	if (tmp[2])
-		return (ft_error_parsing(0));
-	parse->no = tmp[1];
+/*	if (tmp[2])
+		return (ft_error_parsing(0));*/
+	parse->no = ft_strdup(tmp[1]);
 	parse->i += ft_strlen(line);
-	ft_free(line, tmp);
+	free(tmp[0]);
+	free(tmp[1]);
+	free(tmp);
+	free(line);
 	ft_last(parse);
 	parse->i = 0;
 	return (1);
@@ -69,11 +76,14 @@ int		ft_fill_so(char *buf, parse_t *parse)
 		i++;
 	line = ft_substr(buf, parse->i, i);
 	tmp = ft_split(line, ' ');
-	if (tmp[2])
-		return (ft_error_parsing(1));
-	parse->so = tmp[1];
+/*	if (tmp[2])
+		return (ft_error_parsing(1));*/
+	parse->so = ft_strdup(tmp[1]);
 	parse->i += ft_strlen(line);
-	ft_free(line, tmp);
+	free(tmp[0]);
+	free(tmp[1]);
+	free(tmp);
+	free(line);
 	ft_last(parse);
 	parse->i = 0;
 	return (1);
@@ -91,11 +101,14 @@ int		ft_fill_we(char *buf, parse_t *parse)
 		i++;
 	line = ft_substr(buf, parse->i, i);
 	tmp = ft_split(line, ' ');
-	if (tmp[2])
-		return (ft_error_parsing(2));
-	parse->we = tmp[1];
+/*	if (tmp[2])
+		return (ft_error_parsing(2));*/
+	parse->we = ft_strdup(tmp[1]);
 	parse->i += ft_strlen(line);
-	ft_free(line, tmp);
+	free(tmp[0]);
+	free(tmp[1]);
+	free(tmp);
+	free(line);
 	ft_last(parse);
 	parse->i = 0;
 	return (1);
@@ -113,11 +126,14 @@ int		ft_fill_ea(char *buf, parse_t *parse)
 		i++;
 	line = ft_substr(buf, parse->i, i);
 	tmp = ft_split(line, ' ');
-	if (tmp[2])
-		return (ft_error_parsing(3));
-	parse->ea = tmp[1];
+/*	if (tmp[2])
+		return (ft_error_parsing(3));*/
+	parse->ea = ft_strdup(tmp[1]);
 	parse->i += ft_strlen(line);
-	ft_free(line, tmp);
+	free(tmp[0]);
+	free(tmp[1]);
+	free(tmp);
+	free(line);
 	ft_last(parse);
 	parse->i = 0;
 	return (1);

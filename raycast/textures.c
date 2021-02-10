@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 10:54:11 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/06 14:55:26 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/07 09:36:12 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ void	ft_texture_ns(cast_t *cast, tex_t *tex)
 
 void	ft_textures(cast_t *cast)
 {
-//	int				y;
-
 	cast->line_height = (int)(cast->screen_height / cast->perp_wall_dist);
 	cast->draw_start = -cast->line_height / 2 + cast->screen_height / 2;
 	if (cast->draw_start < 0)
@@ -68,7 +66,6 @@ void	ft_textures(cast_t *cast)
 	cast->draw_end = cast->line_height / 2 + cast->screen_height / 2;
 	if (cast->draw_end >= cast->screen_height)
 		cast->draw_end = cast->screen_height - 1;
-	//cast->tex_num = cast->map[cast->mapY][cast->mapX];
 	if (cast->side == 0)
 		cast->wallX = cast->posY + cast->perp_wall_dist * cast->ray_dirY;
 	else
@@ -79,18 +76,6 @@ void	ft_textures(cast_t *cast)
 		cast->texX = cast->tex_width - cast->texX - 1;
 	if (cast->side == 1 && cast->ray_dirY < 0)
 		cast->texX = cast->tex_width - cast->texX - 1;
-/*	cast->step = 1.0 * cast->tex_height / cast->tex_width;
-	cast->tex_pos = (cast->draw_start - cast->screen_height / 2 + cast->line_height / 2) * cast->step;
-	y = cast->draw_start;
-	while (y < cast->draw_end)
-	{
-		cast->texY = (int)cast->tex_pos & (cast->tex_height - 1);
-		cast->tex_pos += cast->step;
-		cast->color = (unsigned int)cast->tex[cast->tex_num].addr[cast->tex_height * cast->texY + cast->texX];
-		printf("here\n");
-		buffer[y][cast->x] = cast->color;
-		y++;
-	}*/
 	if (cast->side == 1)
 		ft_texture_ns(cast, cast->tex);
 	else

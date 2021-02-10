@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 12:15:08 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/27 11:20:55 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/10 11:42:55 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ static int		ft_count_words(char *s, char c)
 	return (count);
 }
 
-static char		*ft_strduplicate(char *s, char *tab, int size, int i)
+static void		*ft_strduplicate(char *s, char *tab, int size, int i)
 {
-	int j;
+	int		j;
 
 	j = 0;
 	if (!(tab = (char *)malloc(sizeof(char) * size + 1)))
@@ -47,9 +47,9 @@ static char		*ft_strduplicate(char *s, char *tab, int size, int i)
 
 static void		ft_malloc_words(char *s, int c, char **tab)
 {
-	int i;
-	int k;
-	int size;
+	int		i;
+	int		k;
+	int		size;
 
 	i = 0;
 	k = 0;
@@ -69,7 +69,7 @@ static void		ft_malloc_words(char *s, int c, char **tab)
 		else
 			i++;
 	}
-	tab[k] = 0;
+//	tab[k] = 0;
 }
 
 char			**ft_split(char const *s, char c)

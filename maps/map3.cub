@@ -1,12 +1,12 @@
 
-S  ./path_to_the_sprite_texture
-NO ./wood.xpm
-SO	 ./mossy.xpm
-EA     ./redbrick.xpm
-WE  ./eagle.xpm
+S  ../textures/star.xpm
+NO ../textures/gryffindor.xpm
+WE	 ../textures/hufflepuff.xpm
+EA     ../textures/slytherin.xpm
+SO  ../textures/ravenclaw.xpm
 
 C  100 ,   100,,  100
-F 220 ,100,0
+F 215 ,210,195
 
 
 R 1000 800 

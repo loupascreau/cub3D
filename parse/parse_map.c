@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 10:49:35 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/05 15:13:07 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/10 10:45:27 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_fill_empty(char **tab, parse_t *parse)
 	int	j;
 
 	j = 0;
-	while (tab[j])
+	while (j < parse->height)
 	{
 		i = 0;
 		while (i < parse->longest)
@@ -95,6 +95,7 @@ int		ft_parse_map(char *buf, parse_t *parse)
 
 	j = 0;
 	line = 0;
+	parse->tab = NULL;
 	if (ft_count_line(buf, parse, &parse->tab) == 0)
 		return (ft_error(4));
 	while (buf[parse->i])
@@ -107,7 +108,7 @@ int		ft_parse_map(char *buf, parse_t *parse)
 	}
 	if (ft_find_player(parse) == 0)
 		return (0);
-	if (ft_check_map(parse->tab, &parse->letter) == 0)
+	if (ft_check_map(parse->tab, &parse->letter, parse) == 0)
 		return (0);
 	ft_fill_empty(parse->tab, parse);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 16:42:09 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/05 15:13:01 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/10 10:46:07 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ int		ft_check_value(char c, int *letter)
 	return (0);
 }
 
-int		ft_check_map(char **tab, int *letter)
+int		ft_check_map(char **tab, int *letter, parse_t *parse)
 {
 	int	j;
 	int	i;
 
 	j = 0;
-	while (tab[j])
+	while (j < parse->height)
 	{
 		i = 0;
 		while (tab[j][i])

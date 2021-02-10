@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:23:26 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/06 11:37:13 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/10 12:24:31 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct		cast_s
 	double			tex_pos;
 	tex_t			*tex;
 	double			*buffer;
+	int				miss_texture;
 }					cast_t;
 
 typedef struct		parse_s
@@ -154,6 +155,7 @@ int		ft_fill_c(char *buf, parse_t *parse);
 void	ft_fill_fc(char **str, char ***tmp2);
 int		ft_is_nbr(char *s1);
 void	ft_free(char *line, char **tmp);
+void	ft_free_map(cast_t *cast);
 int		ft_read_map(parse_t *parse);
 int		ft_find_player(parse_t *parse);
 void	ft_set_direction(parse_t *parse, char c);
@@ -164,7 +166,7 @@ char	*ft_count_nbr(char **line, char *tab, parse_t *parse);
 void	ft_fill_empty(char **tab, parse_t *parse);
 int		ft_parse_map(char *buf, parse_t *parse);
 int		ft_check_value(char c, int *letter);
-int		ft_check_map(char **tab, int *letter);
+int		ft_check_map(char **tab, int *letter, parse_t *parse);
 int		get_next_line(parse_t *parse, char *buf, char **line);
 char	*ft_strdup(char *s);
 char	*ft_strjoin(char *s1, char *s2);
@@ -175,10 +177,12 @@ int		ft_engine(parse_t *parse, cast_t *cast);
 int		ft_setup_data_parse_cast(parse_t *parse, cast_t *cast);
 void	ft_set_params(parse_t *parse, cast_t *cast);
 int		ft_raycasting(cast_t *cast);
+void	ft_colors(cast_t *cast);
 void	ft_textures(cast_t *cast);
 void	ft_texture_ns(cast_t *cast, tex_t *tex);
 void	ft_texture_ew(cast_t *cast, tex_t *tex);
-void	my_mlx_pixel_put(cast_t *cast, int x, int draw_start, int draw_end, int color);
+void	my_mlx_pixel_put(cast_t *cast);
+void	my_mlx_pixel_put2(cast_t *cast, int draw_start, int draw_end, int color);
 int		ft_key_hook(int key, cast_t *cast);
 int		ft_close_window(cast_t *cast);
 int		ft_expose(cast_t *cast);

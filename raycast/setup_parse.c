@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 11:30:53 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/03 14:19:05 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/10 12:28:19 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	ft_set_params(parse_t *parse, cast_t *cast)
 	free(parse->c);
 	cast->tex_width = 64;
 	cast->tex_height = 64;
+	cast->miss_texture = 0;
 }
 
 int		ft_setup_data_parse_cast(parse_t *parse, cast_t *cast)
@@ -50,7 +51,7 @@ int		ft_setup_data_parse_cast(parse_t *parse, cast_t *cast)
 	printf("posX = %f, posY = %f\n", cast->posX, cast->posY);
 	if (!(cast->map = (int **)malloc(sizeof(int *) * cast->map_height + 1)))
 		return (ft_error(4));
-	while (parse->tab[j])
+	while (j < parse->height)
 	{
 		i = 0;
 		if (!(cast->map[j] = (int *)malloc(sizeof(int) * cast->map_width + 1)))
@@ -61,8 +62,10 @@ int		ft_setup_data_parse_cast(parse_t *parse, cast_t *cast)
 			printf("%d", cast->map[j][i]);
 			i++;
 		}
+		free(parse->tab[j]);
 		printf("\n");
 		j++;
 	}
+	free(parse->tab);
 	return (1);
 }

@@ -13,10 +13,14 @@ SRCS		=	main.c \
 				./utils/utils.c \
 				./utils/utils_bis.c \
 				./utils/ft_split.c \
+				./utils/free.c \
 				./raycast/setup_parse.c \
 				./raycast/raycasting.c \
 				./raycast/pixel_put.c \
 				./raycast/textures.c \
+				./raycast/colors.c \
+				./raycast/close.c \
+				./raycast/expose.c \
 				./errors/error.c \
 				./engine/engine.c \
 
@@ -29,7 +33,7 @@ MLX_NAME	=	$(MLX_PATH)libmlx.a
 
 INC			=	./includes/
 
-CC			=	clang -Wall -Wextra -Werror 
+CC			=	clang -Wall -Wextra -Werror -g
 RM			=	rm -f
 
 CFLAGS		=	-lm -lmlx -lXext -lX11

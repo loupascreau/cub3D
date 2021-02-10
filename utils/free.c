@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_digit.c                                      :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/03 10:54:47 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/10 10:57:40 by lpascrea         ###   ########.fr       */
+/*   Created: 2021/02/10 12:21:56 by lpascrea          #+#    #+#             */
+/*   Updated: 2021/02/10 12:27:20 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft.h"
 
-int		ft_is_nbr(char *s1)
+void	ft_free(char *line, char **tmp)
 {
-	int	i;
+	free(line);
+	line = NULL;
+	free(tmp);
+	tmp = NULL;
+}
+
+void	ft_free_map(cast_t *cast)
+{
+	int i;
 
 	i = 0;
-	while (s1[i])
+	while (i < cast->map_height)
 	{
-		if ((s1[i] <= 47 || s1[i] >= 58) && s1[i] != 32)
-			return (0);
+		free(cast->map[i]);
 		i++;
 	}
-	return (1);
+	free(cast->map);
 }
