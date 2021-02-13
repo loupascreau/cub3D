@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 11:46:45 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/03 18:51:20 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/12 10:16:16 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int		main(int argc, char **argv)
 	parse.fd = open(argv[1], O_RDONLY);
 	if (ft_read_map(&parse) == 0)
 		return (0);
+	cast.nbr_sprite = ft_recup_sprites(&parse, &cast);
 	if (ft_engine(&parse, &cast) == 0)
 		return (0);
 	return (1);

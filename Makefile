@@ -21,6 +21,7 @@ SRCS		=	main.c \
 				./raycast/colors.c \
 				./raycast/close.c \
 				./raycast/expose.c \
+				./raycast/sprite.c \
 				./errors/error.c \
 				./engine/engine.c \
 

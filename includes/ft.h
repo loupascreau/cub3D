@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:23:26 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/10 12:24:31 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/12 14:47:15 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@
 # include <math.h>
 # include "../minilibx-linux/mlx.h"
 # define BUFFER_SIZE 4096
+
+typedef struct		sprite_s
+{
+	double			x;
+	double			y;
+}					sprite_t;
 
 typedef struct		tex_s
 {
@@ -92,38 +98,53 @@ typedef struct		cast_s
 	tex_t			*tex;
 	double			*buffer;
 	int				miss_texture;
+	sprite_t		sprite[50];
+	int				nbr_sprite;
+	double			spriteX;
+	double			spriteY;
+	double			inv_det;
+	double			transformX;
+	double			transformY;
+	int				sprite_screenX;
+	int				sprite_height;
+	int				sprite_width;
+	int				draw_startX;
+	int				draw_startY;
+	int				draw_endX;
+	int				draw_endY;
+	int				stripe;
 }					cast_t;
 
 typedef struct		parse_s
 {
-	int		fd;
-	int		last;
-	int		R;
-	int		x;
-	int		y;
-	int		i;
-	int		NO;
-	char	*no;
-	int		SO;
-	char	*so;
-	int		WE;
-	char	*we;
-	int		EA;
-	char	*ea;
-	int		S;
-	char	*s;
-	int		F;
-	char	*f;
-	int		C;
-	char	*c;
-	char	**tab;
-	int		posX;
-	int		posY;
-	int		longest;
-	int		height;
-	int		dirX;
-	int		dirY;
-	int		letter;
+	int			fd;
+	int			last;
+	int			R;
+	int			x;
+	int			y;
+	int			i;
+	int			NO;
+	char		*no;
+	int			SO;
+	char		*so;
+	int			WE;
+	char		*we;
+	int			EA;
+	char		*ea;
+	int			S;
+	char		*s;
+	int			F;
+	char		*f;
+	int			C;
+	char		*c;
+	char		**tab;
+	int			posX;
+	int			posY;
+	int			longest;
+	int			height;
+	int			dirX;
+	int			dirY;
+	int			letter;
 }					parse_t;
 
 int		ft_atoi(char *str);
@@ -174,6 +195,7 @@ int		ft_line_found(char *tab);
 int		ft_fill_line(char **tab, char **line, int var, parse_t *parse);
 int		ft_check_all(char **tab, char **line, parse_t *parse, char *buf);
 int		ft_engine(parse_t *parse, cast_t *cast);
+int		ft_recup_sprites(parse_t *parse, cast_t *cast);
 int		ft_setup_data_parse_cast(parse_t *parse, cast_t *cast);
 void	ft_set_params(parse_t *parse, cast_t *cast);
 int		ft_raycasting(cast_t *cast);
@@ -181,6 +203,7 @@ void	ft_colors(cast_t *cast);
 void	ft_textures(cast_t *cast);
 void	ft_texture_ns(cast_t *cast, tex_t *tex);
 void	ft_texture_ew(cast_t *cast, tex_t *tex);
+void	ft_sprite(cast_t *cast);
 void	my_mlx_pixel_put(cast_t *cast);
 void	my_mlx_pixel_put2(cast_t *cast, int draw_start, int draw_end, int color);
 int		ft_key_hook(int key, cast_t *cast);
