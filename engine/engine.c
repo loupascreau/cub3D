@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:41:32 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/12 09:48:38 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/13 09:03:23 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int		ft_engine(parse_t *parse, cast_t *cast)
 	if (ret == -1)
 		cast->miss_texture = -1;
 	mlx_hook(cast->win, 2, 1L << 0, ft_key_hook, cast);
+	mlx_hook(cast->win, 3, 1L << 1, ft_key_release, cast);
 	mlx_hook(cast->win, 33, 1L << 0, ft_close_window, cast);
 	mlx_loop_hook(cast->mlx, ft_expose, cast);
 	mlx_loop(cast->mlx);

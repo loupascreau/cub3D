@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close.c                                            :+:      :+:    :+:   */
+/*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 15:45:28 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/12 09:28:01 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/13 09:20:52 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int		ft_close_window(cast_t *cast)
 {
 	ft_free_map(cast);
 	mlx_loop_end(cast->mlx);
-	mlx_destroy_image(cast->mlx, cast->img);
 	mlx_destroy_image(cast->mlx, cast->img);
 	mlx_destroy_image(cast->mlx, cast->tex[0].img);
 	mlx_destroy_image(cast->mlx, cast->tex[1].img);
@@ -93,5 +92,12 @@ int		ft_key_hook(int key, cast_t *cast)
 		free(cast->mlx);
 		exit(0);
 	}
+	return (0);
+}
+
+int		ft_key_release(int key, cast_t *cast)
+{
+	(void)key;
+	(void)cast;
 	return (0);
 }

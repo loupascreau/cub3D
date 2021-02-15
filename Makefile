@@ -19,7 +19,7 @@ SRCS		=	main.c \
 				./raycast/pixel_put.c \
 				./raycast/textures.c \
 				./raycast/colors.c \
-				./raycast/close.c \
+				./raycast/keys.c \
 				./raycast/expose.c \
 				./raycast/sprite.c \
 				./errors/error.c \

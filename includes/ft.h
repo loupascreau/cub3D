@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:23:26 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/12 14:47:15 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/13 09:40:44 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n);
 char	*ft_strcpy(char *dest, char *src);
 char	*ft_putnbr_base(int nbr, char *tab, int i);
 int		ft_strlen(char *str);
-char	**ft_split(char const *s, char c);
+char	**ft_split(char const *s, char c, int *count);
 int		ft_pos_base(char c, char *base);
 int		ft_atoi_base(char *nbr, char *base);
 int		ft_check_base(char *base);
@@ -207,6 +207,7 @@ void	ft_sprite(cast_t *cast);
 void	my_mlx_pixel_put(cast_t *cast);
 void	my_mlx_pixel_put2(cast_t *cast, int draw_start, int draw_end, int color);
 int		ft_key_hook(int key, cast_t *cast);
+int		ft_key_release(int key, cast_t *cast);
 int		ft_close_window(cast_t *cast);
 int		ft_expose(cast_t *cast);
 int		ft_error(int nbr);

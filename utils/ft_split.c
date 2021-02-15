@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 12:15:08 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/10 11:42:55 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/13 09:43:05 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void		ft_malloc_words(char *s, int c, char **tab)
 //	tab[k] = 0;
 }
 
-char			**ft_split(char const *s, char c)
+char			**ft_split(char const *s, char c, int *count)
 {
 	char	**tab;
 	int		words;
@@ -80,6 +80,7 @@ char			**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	words = ft_count_words((char *)s, c);
+	*count = words;
 	if (!(tab = (char **)malloc(sizeof(char *) * words + 1)))
 		return (NULL);
 	ft_malloc_words((char *)s, c, tab);

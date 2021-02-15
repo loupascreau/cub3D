@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 14:38:06 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/10 11:44:27 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/13 09:46:03 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,18 @@ int		ft_fill_s(char *buf, parse_t *parse)
 {
 	char	*line;
 	char	**tmp;
+	int		count;
 	int		i;
 
 	i = 0;
+	count = 0;
 	parse->S = 1;
 	while (buf[parse->i + i] != '\n')
 		i++;
 	line = ft_substr(buf, parse->i, i);
-	tmp = ft_split(line, ' ');
-/*	if (tmp[2])
-		return (ft_error_parsing(7));*/
+	tmp = ft_split(line, ' ', &count);
+	if (count != 2)
+		return (ft_error_parsing(7));
 	parse->s = ft_strdup(tmp[1]);
 	parse->i += ft_strlen(line);
 	free(tmp[0]);
@@ -59,16 +61,18 @@ int		ft_fill_f(char *buf, parse_t *parse)
 {
 	char	*line;
 	char	**tmp;
+	int		count;
 	int		i;
 
 	i = 0;
+	count = 0;
 	parse->F = 1;
 	while (buf[parse->i + i] != '\n')
 		i++;
 	line = ft_substr(buf, parse->i + 1, i - 1);
 	parse->i += i;
-	tmp = ft_split(line, ',');
-	if (/*tmp[3] || */ft_is_nbr(tmp[0]) == 0 || ft_is_nbr(tmp[1]) == 0 || ft_is_nbr(tmp[2]) == 0)
+	tmp = ft_split(line, ',', &count);
+	if (count != 3 || ft_is_nbr(tmp[0]) == 0 || ft_is_nbr(tmp[1]) == 0 || ft_is_nbr(tmp[2]) == 0)
 		return (ft_error_parsing(6));
 	if (!(parse->f = (char *)malloc(sizeof(char) * (6 + 1))))
 		return (0);
@@ -84,16 +88,18 @@ int		ft_fill_c(char *buf, parse_t *parse)
 {
 	char	*line;
 	char	**tmp;
+	int		count;
 	int		i;
 
 	i = 0;
+	count = 0;
 	parse->C = 1;
 	while (buf[parse->i + i] != '\n')
 		i++;
 	line = ft_substr(buf, parse->i + 1, i - 1);
 	parse->i += i;
-	tmp = ft_split(line, ',');
-	if (/*tmp[3] || */ft_is_nbr(tmp[0]) == 0 || ft_is_nbr(tmp[1]) == 0 || ft_is_nbr(tmp[2]) == 0)
+	tmp = ft_split(line, ',', &count);
+	if (count != 3 || ft_is_nbr(tmp[0]) == 0 || ft_is_nbr(tmp[1]) == 0 || ft_is_nbr(tmp[2]) == 0)
 		return (ft_error_parsing(5));
 	if (!(parse->c = (char *)malloc(sizeof(char) * (6 + 1))))
 		return (0);
