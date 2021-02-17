@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 11:46:45 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/12 10:16:16 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/17 14:11:05 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		ft_check_argv(char *argv)
 	return (0);
 }
 
-int		ft_check_save(char *str)
+int		ft_check_save(char *str, t_cast *cast)
 {
 	if (!str)
 		return (1);
@@ -44,32 +44,39 @@ int		ft_check_save(char *str)
 		return (0);
 	if (str[4] != 'v' && str[5] != 'e')
 		return (0);
+	cast->save = 1;
 	return (1);
 }
 
-int		ft_argc_argv(int argc, char **argv)
+int		ft_argc_argv(int argc, char **argv, t_cast *cast)
 {
+	cast->save = 0;
 	if (argc == 1 || argc > 3)
 		return (ft_error(0));
 	if (ft_check_argv(argv[1]) == 0)
 		return (ft_error(1));
-	if (ft_check_save(argv[2]) == 0)
+	if (ft_check_save(argv[2], cast) == 0)
 		return (ft_error(6));
 	return (1);
 }
 
 int		main(int argc, char **argv)
 {
-	parse_t		parse;
-	cast_t		cast;
+	t_parse		parse;
+	t_cast		cast;
 
-	if (ft_argc_argv(argc, argv) == 0)
+	if (ft_argc_argv(argc, argv, &cast) == 0)
 		return (0);
 	parse.fd = open(argv[1], O_RDONLY);
 	if (ft_read_map(&parse) == 0)
 		return (0);
 	cast.nbr_sprite = ft_recup_sprites(&parse, &cast);
-	if (ft_engine(&parse, &cast) == 0)
+	if (cast.save == 1)
+	{
+		if (ft_save(&cast, &parse) == 0)
+			return (0);
+	}
+	else if (ft_engine(&parse, &cast) == 0)
 		return (0);
 	return (1);
 }

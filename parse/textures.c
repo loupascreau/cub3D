@@ -6,13 +6,13 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 11:19:56 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/13 09:45:27 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/17 11:56:59 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft.h"
 
-int		ft_fill_x_y(char *buf, parse_t *parse)
+int		ft_fill_x_y(char *buf, t_parse *parse)
 {
 	char	*line;
 	char	**tmp;
@@ -21,7 +21,7 @@ int		ft_fill_x_y(char *buf, parse_t *parse)
 
 	count = 0;
 	i = 0;
-	parse->R = 1;
+	parse->reso = 1;
 	while (buf[parse->i + i] != '\n')
 		i++;
 	line = ft_substr(buf, parse->i, i);
@@ -41,7 +41,7 @@ int		ft_fill_x_y(char *buf, parse_t *parse)
 	return (1);
 }
 
-int		ft_fill_no(char *buf, parse_t *parse)
+int		ft_fill_no(char *buf, t_parse *parse)
 {
 	char	*line;
 	char	**tmp;
@@ -50,7 +50,7 @@ int		ft_fill_no(char *buf, parse_t *parse)
 
 	i = 0;
 	count = 0;
-	parse->NO = 1;
+	parse->north = 1;
 	while (buf[parse->i + i] != '\n')
 		i++;
 	line = ft_substr(buf, parse->i, i);
@@ -68,7 +68,7 @@ int		ft_fill_no(char *buf, parse_t *parse)
 	return (1);
 }
 
-int		ft_fill_so(char *buf, parse_t *parse)
+int		ft_fill_so(char *buf, t_parse *parse)
 {
 	char	*line;
 	char	**tmp;
@@ -77,7 +77,7 @@ int		ft_fill_so(char *buf, parse_t *parse)
 
 	i = 0;
 	count = 0;
-	parse->SO = 1;
+	parse->south = 1;
 	while (buf[parse->i + i] != '\n')
 		i++;
 	line = ft_substr(buf, parse->i, i);
@@ -95,7 +95,7 @@ int		ft_fill_so(char *buf, parse_t *parse)
 	return (1);
 }
 
-int		ft_fill_we(char *buf, parse_t *parse)
+int		ft_fill_we(char *buf, t_parse *parse)
 {
 	char	*line;
 	char	**tmp;
@@ -104,7 +104,7 @@ int		ft_fill_we(char *buf, parse_t *parse)
 
 	i = 0;
 	count = 0;
-	parse->WE = 1;
+	parse->west = 1;
 	while (buf[parse->i + i] != '\n')
 		i++;
 	line = ft_substr(buf, parse->i, i);
@@ -122,7 +122,7 @@ int		ft_fill_we(char *buf, parse_t *parse)
 	return (1);
 }
 
-int		ft_fill_ea(char *buf, parse_t *parse)
+int		ft_fill_ea(char *buf, t_parse *parse)
 {
 	char	*line;
 	char	**tmp;
@@ -131,7 +131,7 @@ int		ft_fill_ea(char *buf, parse_t *parse)
 
 	i = 0;
 	count = 0;
-	parse->EA = 1;
+	parse->east = 1;
 	while (buf[parse->i + i] != '\n')
 		i++;
 	line = ft_substr(buf, parse->i, i);

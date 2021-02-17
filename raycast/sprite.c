@@ -6,13 +6,13 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 16:00:42 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/12 15:33:57 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/17 11:33:04 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft.h"
 
-int		ft_recup_sprites(parse_t *parse, cast_t *cast)
+int		ft_recup_sprites(t_parse *parse, t_cast *cast)
 {
 	int	i;
 	int	j;
@@ -25,11 +25,10 @@ int		ft_recup_sprites(parse_t *parse, cast_t *cast)
 		i = 0;
 		while (parse->tab[j][i])
 		{
-			if (parse->tab[j][i] == '2')
+			if (parse->tab[j][i] == '2' && n < 100)
 			{
 				cast->sprite[n].x = i + 0.5;
 				cast->sprite[n].y = j + 0.5;
-				printf("sprite[%d].x = %f, y = %f\n", n, cast->sprite[n].x, cast->sprite[n].y);
 				n++;
 			}
 			i++;
@@ -48,7 +47,7 @@ void	ft_sort_sprite(int *sprite_order, double *sprite_dist, int nbr_sprite)
 	i = 0;
 	while (i < nbr_sprite - 1)
 	{
-		if (sprite_dist[i] > sprite_dist[i + 1])
+		if (sprite_dist[i] < sprite_dist[i + 1])
 		{
 			tmp_dist = sprite_dist[i];
 			sprite_dist[i] = sprite_dist[i + 1];
@@ -62,7 +61,7 @@ void	ft_sort_sprite(int *sprite_order, double *sprite_dist, int nbr_sprite)
 	}
 }
 
-void	ft_sprite(cast_t *cast)
+void	ft_sprite(t_cast *cast)
 {
 	int		i;
 	int		y;
@@ -78,7 +77,7 @@ void	ft_sprite(cast_t *cast)
 		+ (cast->posY - cast->sprite[i].y) * (cast->posY - cast->sprite[i].y));
 		i++;
 	}
-//	ft_sort_sprite(sprite_order, sprite_dist, cast->nbr_sprite);
+	ft_sort_sprite(sprite_order, sprite_dist, cast->nbr_sprite);
 	i = 0;
 	while (i < cast->nbr_sprite)
 	{

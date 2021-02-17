@@ -6,13 +6,13 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 14:38:06 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/13 09:46:03 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/17 12:05:52 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft.h"
 
-void	ft_last(parse_t *parse)
+void	ft_last(t_parse *parse)
 {
 	if (parse->i > parse->last)
 		parse->last = parse->i;
@@ -30,7 +30,7 @@ void	ft_fill_fc(char **str, char ***tmp2)
 	*str = ft_convert_base(*str, "0123456789ABCDEF", "0123456789");
 }
 
-int		ft_fill_s(char *buf, parse_t *parse)
+int		ft_fill_s(char *buf, t_parse *parse)
 {
 	char	*line;
 	char	**tmp;
@@ -39,7 +39,7 @@ int		ft_fill_s(char *buf, parse_t *parse)
 
 	i = 0;
 	count = 0;
-	parse->S = 1;
+	parse->sprite = 1;
 	while (buf[parse->i + i] != '\n')
 		i++;
 	line = ft_substr(buf, parse->i, i);
@@ -57,7 +57,7 @@ int		ft_fill_s(char *buf, parse_t *parse)
 	return (1);
 }
 
-int		ft_fill_f(char *buf, parse_t *parse)
+int		ft_fill_f(char *buf, t_parse *parse)
 {
 	char	*line;
 	char	**tmp;
@@ -66,13 +66,14 @@ int		ft_fill_f(char *buf, parse_t *parse)
 
 	i = 0;
 	count = 0;
-	parse->F = 1;
+	parse->floor = 1;
 	while (buf[parse->i + i] != '\n')
 		i++;
 	line = ft_substr(buf, parse->i + 1, i - 1);
 	parse->i += i;
 	tmp = ft_split(line, ',', &count);
-	if (count != 3 || ft_is_nbr(tmp[0]) == 0 || ft_is_nbr(tmp[1]) == 0 || ft_is_nbr(tmp[2]) == 0)
+	if (count != 3 || ft_is_nbr(tmp[0]) == 0 ||
+	ft_is_nbr(tmp[1]) == 0 || ft_is_nbr(tmp[2]) == 0)
 		return (ft_error_parsing(6));
 	if (!(parse->f = (char *)malloc(sizeof(char) * (6 + 1))))
 		return (0);
@@ -84,7 +85,7 @@ int		ft_fill_f(char *buf, parse_t *parse)
 	return (1);
 }
 
-int		ft_fill_c(char *buf, parse_t *parse)
+int		ft_fill_c(char *buf, t_parse *parse)
 {
 	char	*line;
 	char	**tmp;
@@ -93,13 +94,14 @@ int		ft_fill_c(char *buf, parse_t *parse)
 
 	i = 0;
 	count = 0;
-	parse->C = 1;
+	parse->ceil = 1;
 	while (buf[parse->i + i] != '\n')
 		i++;
 	line = ft_substr(buf, parse->i + 1, i - 1);
 	parse->i += i;
 	tmp = ft_split(line, ',', &count);
-	if (count != 3 || ft_is_nbr(tmp[0]) == 0 || ft_is_nbr(tmp[1]) == 0 || ft_is_nbr(tmp[2]) == 0)
+	if (count != 3 || ft_is_nbr(tmp[0]) == 0 ||
+	ft_is_nbr(tmp[1]) == 0 || ft_is_nbr(tmp[2]) == 0)
 		return (ft_error_parsing(5));
 	if (!(parse->c = (char *)malloc(sizeof(char) * (6 + 1))))
 		return (0);

@@ -6,13 +6,13 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 15:49:45 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/12 14:47:22 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/17 11:31:03 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft.h"
 
-int		ft_expose(cast_t *cast)
+int		ft_expose(t_cast *cast)
 {
 	my_mlx_pixel_put(cast);	
 	if (ft_raycasting(cast) == 0)

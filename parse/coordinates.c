@@ -6,37 +6,41 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 12:23:18 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/03 12:10:55 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/17 12:02:21 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft.h"
 
-void	ft_set_direction(parse_t *parse, char c)
+void	ft_set_direction(t_parse *parse, char c)
 {
 	if (c == 'N')
 	{
-		parse->dirX = 0;
-		parse->dirY = -1;
+		parse->dirx = 0;
+		parse->diry = -1;
+		parse->planex = -0.66;
 	}
 	if (c == 'W')
 	{
-		parse->dirX = -1;
-		parse->dirY = 0;
+		parse->dirx = -1;
+		parse->diry = 0;
+		parse->planey = 0.66;
 	}
 	if (c == 'S')
 	{
-		parse->dirX = 0;
-		parse->dirY = 1;
+		parse->dirx = 0;
+		parse->diry = 1;
+		parse->planex = 0.66;
 	}
 	if (c == 'E')
 	{
-		parse->dirX = 1;
-		parse->dirY = 0;
+		parse->dirx = 1;
+		parse->diry = 0;
+		parse->planey = -0.66;
 	}
 }
 
-int		ft_find_player(parse_t *parse)
+int		ft_find_player(t_parse *parse)
 {
 	int	i;
 	int	j;
@@ -50,8 +54,8 @@ int		ft_find_player(parse_t *parse)
 			if (parse->tab[j][i] == 'N' || parse->tab[j][i] == 'S'
 			|| parse->tab[j][i] == 'E' || parse->tab[j][i] == 'W')
 			{
-				parse->posX = i;
-				parse->posY = j;
+				parse->posx = i;
+				parse->posy = j;
 				ft_set_direction(parse, parse->tab[j][i]);
 				parse->tab[j][i] = '0';
 				return (1);

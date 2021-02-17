@@ -6,37 +6,41 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 11:18:45 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/10 16:27:29 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/17 12:04:22 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft.h"
 
-void	ft_init(parse_t *parse)
+void	ft_init(t_parse *parse)
 {
-	parse->R = 0;
-	parse->NO = 0;
-	parse->SO = 0;
-	parse->WE = 0;
-	parse->EA = 0;
-	parse->S = 0;
-	parse->F = 0;
-	parse->C = 0;
+	parse->reso = 0;
+	parse->north = 0;
+	parse->south = 0;
+	parse->west = 0;
+	parse->east = 0;
+	parse->sprite = 0;
+	parse->floor = 0;
+	parse->ceil = 0;
 	parse->last = 0;
-	parse->posX = 0;
-	parse->posY = 0;
+	parse->posx = 0;
+	parse->posy = 0;
 	parse->longest = 0;
 	parse->height = 0;
-	parse->dirX = 0;
-	parse->dirY = 0;
+	parse->dirx = 0;
+	parse->diry = 0;
 	parse->letter = 0;
+	parse->planex = 0;
+	parse->planey = 0;
 }
 
-int		ft_map_at_end(char *buf, parse_t *parse)
+int		ft_map_at_end(char *buf, t_parse *parse)
 {
-	if (parse->R == 1 && parse->NO == 1 && parse->SO == 1 && parse->WE == 1)
+	if (parse->reso == 1 && parse->north == 1 &&
+	parse->south == 1 && parse->west == 1)
 	{
-		if (parse->EA == 1 && parse->S == 1 && parse->F == 1 && parse->C == 1)
+		if (parse->east == 1 && parse->sprite == 1 &&
+		parse->floor == 1 && parse->ceil == 1)
 		{
 			parse->i = parse->last;
 			while (buf[parse->i] != '1' && buf[parse->i])
@@ -51,24 +55,24 @@ int		ft_map_at_end(char *buf, parse_t *parse)
 	return (ft_error_parsing(9));
 }
 
-int		ft_list_params_textures(char *buf, parse_t *parse)
+int		ft_list_params_textures(char *buf, t_parse *parse)
 {
-	if ((buf[parse->i] == 'N' && buf[parse->i + 1] == 'O') && parse->NO == 0)
+	if ((buf[parse->i] == 'N' && buf[parse->i + 1] == 'O') && parse->north == 0)
 	{
 		if (ft_fill_no(buf, parse) == 0)
 			return (0);
 	}
-	if ((buf[parse->i] == 'S' && buf[parse->i + 1] == 'O') && parse->SO == 0)
+	if ((buf[parse->i] == 'S' && buf[parse->i + 1] == 'O') && parse->south == 0)
 	{
 		if (ft_fill_so(buf, parse) == 0)
 			return (0);
 	}
-	if ((buf[parse->i] == 'W' && buf[parse->i + 1] == 'E') && parse->WE == 0)
+	if ((buf[parse->i] == 'W' && buf[parse->i + 1] == 'E') && parse->west == 0)
 	{
 		if (ft_fill_we(buf, parse) == 0)
 			return (0);
 	}
-	if ((buf[parse->i] == 'E' && buf[parse->i + 1] == 'A') && parse->EA == 0)
+	if ((buf[parse->i] == 'E' && buf[parse->i + 1] == 'A') && parse->east == 0)
 	{
 		if (ft_fill_ea(buf, parse) == 0)
 			return (0);
@@ -76,24 +80,24 @@ int		ft_list_params_textures(char *buf, parse_t *parse)
 	return (1);
 }
 
-int		ft_list_params_colors_xy(char *buf, parse_t *parse)
+int		ft_list_params_colors_xy(char *buf, t_parse *parse)
 {
-	if (buf[parse->i] == 'S' && parse->S == 0)
+	if (buf[parse->i] == 'S' && parse->sprite == 0)
 	{
 		if (ft_fill_s(buf, parse) == 0)
 			return (0);
 	}
-	if (buf[parse->i] == 'R' && parse->R == 0)
+	if (buf[parse->i] == 'R' && parse->reso == 0)
 	{
 		if (ft_fill_x_y(buf, parse) == 0)
 			return (0);
 	}
-	if (buf[parse->i] == 'F' && parse->F == 0)
+	if (buf[parse->i] == 'F' && parse->floor == 0)
 	{
 		if (ft_fill_f(buf, parse) == 0)
 			return (0);
 	}
-	if (buf[parse->i] == 'C' && parse->C == 0)
+	if (buf[parse->i] == 'C' && parse->ceil == 0)
 	{
 		if (ft_fill_c(buf, parse) == 0)
 			return (0);
@@ -101,7 +105,7 @@ int		ft_list_params_colors_xy(char *buf, parse_t *parse)
 	return (1);
 }
 
-int		ft_read_map(parse_t *parse)
+int		ft_read_map(t_parse *parse)
 {
 	char	buf[BUFFER_SIZE + 1];
 	int		ret;

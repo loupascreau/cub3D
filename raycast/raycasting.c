@@ -6,81 +6,90 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:29:45 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/11 16:09:52 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/17 14:20:02 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft.h"
 
-void	ft_rayon(cast_t *cast)
+void	ft_rayon(t_cast *cast)
 {
-	if (cast->ray_dirX < 0)
+	if (cast->ray_dirx < 0)
 	{
-		cast->stepX = -1;
-		cast->side_distX = (cast->posX - cast->mapX) * cast->delta_distX;
+		cast->stepx = -1;
+		cast->side_distx = (cast->posx - cast->mapx) * cast->delta_distx;
 	}
 	else
 	{
-		cast->stepX = 1;
-		cast->side_distX = (cast->mapX + 1.0 - cast->posX) * cast->delta_distX;
+		cast->stepx = 1;
+		cast->side_distx = (cast->mapx + 1.0 - cast->posx) * cast->delta_distx;
 	}
-	if (cast->ray_dirY < 0)
+	if (cast->ray_diry < 0)
 	{
-		cast->stepY = -1;
-		cast->side_distY = (cast->posY - cast->mapY) * cast->delta_distY;
+		cast->stepy = -1;
+		cast->side_disty = (cast->posy - cast->mapy) * cast->delta_disty;
 	}
 	else
 	{
-		cast->stepY = 1;
-		cast->side_distY = (cast->mapY + 1.0 - cast->posY) * cast->delta_distY;
+		cast->stepy = 1;
+		cast->side_disty = (cast->mapy + 1.0 - cast->posy) * cast->delta_disty;
 	}
 }
 
-void	ft_dda(cast_t *cast)
+void	ft_dda(t_cast *cast)
 {
 	cast->hit = 0;
 	while (cast->hit == 0)
 	{
-		if (cast->side_distX < cast->side_distY)
+		if (cast->side_distx < cast->side_disty)
 		{
-			cast->side_distX += cast->delta_distX;
-			cast->mapX += cast->stepX;
+			cast->side_distx += cast->delta_distx;
+			cast->mapx += cast->stepx;
 			cast->side = 0;
 		}
 		else
 		{
-			cast->side_distY += cast->delta_distY;
-			cast->mapY += cast->stepY;
+			cast->side_disty += cast->delta_disty;
+			cast->mapy += cast->stepy;
 			cast->side = 1;
 		}
-		if (cast->map[cast->mapY][cast->mapX] == 1)
+		if (cast->map[cast->mapy][cast->mapx] == 1)
 			cast->hit = 1;
 	}
 	if (cast->side == 0)
-		cast->perp_wall_dist = (cast->mapX - cast->posX + (1 - cast->stepX) / 2) / cast->ray_dirX;
+		cast->perp_wall_dist = (cast->mapx - cast->posx + (1 - cast->stepx) / 2) / cast->ray_dirx;
 	else
-		cast->perp_wall_dist = (cast->mapY - cast->posY + (1 - cast->stepY) / 2) / cast->ray_dirY;
+		cast->perp_wall_dist = (cast->mapy - cast->posy + (1 - cast->stepy) / 2) / cast->ray_diry;
 	cast->buffer[cast->x] = cast->perp_wall_dist;
 }
 
-int		ft_raycasting(cast_t *cast)
+int		ft_raycasting(t_cast *cast)
 {
 	if (!(cast->buffer = (double *)malloc(sizeof(double) * cast->screen_width)))
 		return (ft_error(4));
 	cast->x = 0;
 	while (cast->x < cast->screen_width)
 	{
-		cast->cameraX = 2 * cast->x / (double)cast->screen_width - 1;
-		cast->ray_dirX = cast->dirX + cast->planeX * cast->cameraX;
-		cast->ray_dirY = cast->dirY + cast->planeY * cast->cameraX;
-		cast->mapX = cast->posX;
-		cast->mapY = cast->posY;
-		cast->delta_distX = fabs(1 / cast->ray_dirX);
-		cast->delta_distY = fabs(1 / cast->ray_dirY);
+		cast->camerax = 2 * cast->x / (double)cast->screen_width - 1;
+		cast->ray_dirx = cast->dirx + cast->planex * cast->camerax;
+		cast->ray_diry = cast->diry + cast->planey * cast->camerax;
+		cast->mapx = cast->posx;
+		cast->mapy = cast->posy;
+		cast->delta_distx = fabs(1 / cast->ray_dirx);
+		cast->delta_disty = fabs(1 / cast->ray_diry);
 		ft_rayon(cast);	
 		ft_dda(cast);
-		if (cast->miss_texture == -1)
-			ft_colors(cast);
+		if (cast->miss_texture < 0)
+		{
+			free(cast->buffer);
+			ft_free_map(cast);
+			mlx_loop_end(cast->mlx);
+			mlx_destroy_image(cast->mlx, cast->img);
+			mlx_destroy_window(cast->mlx, cast->win);
+			mlx_destroy_display(cast->mlx);
+			free(cast->mlx);
+			exit(0);
+		}
 		else
 			ft_textures(cast);
 		cast->x++;

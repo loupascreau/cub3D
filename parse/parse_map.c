@@ -6,13 +6,13 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 10:49:35 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/12 10:08:56 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/17 11:26:51 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft.h"
 
-int		ft_count_line(char *buf, parse_t *parse, char ***tab)
+int		ft_count_line(char *buf, t_parse *parse, char ***tab)
 {
 	int	j;
 	int	i;
@@ -40,7 +40,7 @@ int		ft_count_line(char *buf, parse_t *parse, char ***tab)
 	return (1);
 }
 
-char	*ft_count_nbr(char **line, char *tab, parse_t *parse)
+char	*ft_count_nbr(char **line, char *tab, t_parse *parse)
 {
 	int	size;
 	int len;
@@ -64,7 +64,7 @@ char	*ft_count_nbr(char **line, char *tab, parse_t *parse)
 	return (tab);
 }
 
-void	ft_fill_empty(char **tab, parse_t *parse)
+void	ft_fill_empty(char **tab, t_parse *parse)
 {
 	int i;
 	int	j;
@@ -87,7 +87,7 @@ void	ft_fill_empty(char **tab, parse_t *parse)
 	}
 }
 
-int		ft_parse_map(char *buf, parse_t *parse)
+int		ft_parse_map(char *buf, t_parse *parse)
 {
 	char			*line;
 	int				size;

@@ -18,12 +18,13 @@ SRCS		=	main.c \
 				./raycast/raycasting.c \
 				./raycast/pixel_put.c \
 				./raycast/textures.c \
-				./raycast/colors.c \
 				./raycast/keys.c \
 				./raycast/expose.c \
 				./raycast/sprite.c \
+				./raycast/move.c \
 				./errors/error.c \
 				./engine/engine.c \
+				./save/save.c \
 
 OBJS		=	${SRCS:.c=.o}
 

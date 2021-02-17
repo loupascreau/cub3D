@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 13:14:44 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/01/22 15:49:10 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/17 11:39:24 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		ft_line_found(char *tab)
 	return (-1);
 }
 
-int		ft_fill_line(char **tab, char **line, int var, parse_t *parse)
+int		ft_fill_line(char **tab, char **line, int var, t_parse *parse)
 {
 	char	*tmp;
 	int		size_tab;
@@ -46,7 +46,7 @@ int		ft_fill_line(char **tab, char **line, int var, parse_t *parse)
 	return (1);
 }
 
-int		ft_check_all(char **tab, char **line, parse_t *parse, char *buf)
+int		ft_check_all(char **tab, char **line, t_parse *parse, char *buf)
 {
 	int		var;
 
@@ -65,7 +65,7 @@ int		ft_check_all(char **tab, char **line, parse_t *parse, char *buf)
 	return (0);
 }
 
-int		get_next_line(parse_t *parse, char *buf, char **line)
+int		get_next_line(t_parse *parse, char *buf, char **line)
 {
 	static char	*tab = 0;
 	int			var;

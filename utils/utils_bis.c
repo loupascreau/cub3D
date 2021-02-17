@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 15:01:17 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/10 12:23:06 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/17 12:08:37 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	{
 		dst[i] = cpy[i];
 		i++;
-	}			
+	}
 	return (dest);
 }

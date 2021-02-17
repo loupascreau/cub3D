@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 12:21:56 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/10 12:27:20 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/17 13:47:03 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_free(char *line, char **tmp)
 	tmp = NULL;
 }
 
-void	ft_free_map(cast_t *cast)
+void	ft_free_map(t_cast *cast)
 {
 	int i;
 
@@ -31,4 +31,13 @@ void	ft_free_map(cast_t *cast)
 		i++;
 	}
 	free(cast->map);
+}
+
+void	ft_free_parse(t_parse *parse)
+{
+	free(parse->no);
+	free(parse->so);
+	free(parse->ea);
+	free(parse->we);
+	free(parse->s);
 }
