@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 12:23:18 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/17 12:02:21 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/18 15:42:46 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,25 @@ void	ft_set_direction(t_parse *parse, char c)
 	{
 		parse->dirx = 0;
 		parse->diry = -1;
-		parse->planex = -0.66;
+		parse->planex = 0.66;
 	}
 	if (c == 'W')
 	{
 		parse->dirx = -1;
 		parse->diry = 0;
-		parse->planey = 0.66;
+		parse->planey = -0.66;
 	}
 	if (c == 'S')
 	{
 		parse->dirx = 0;
 		parse->diry = 1;
-		parse->planex = 0.66;
+		parse->planex = -0.66;
 	}
 	if (c == 'E')
 	{
 		parse->dirx = 1;
 		parse->diry = 0;
-		parse->planey = -0.66;
+		parse->planey = 0.66;
 	}
 }
 

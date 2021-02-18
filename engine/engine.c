@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 14:41:32 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/17 15:54:22 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/18 17:22:15 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ int		ft_init_texture(t_cast *cast, t_tex *tex, int w, t_parse *parse)
 int		ft_engine(t_parse *parse, t_cast *cast)
 {
 	t_tex	tex[5];
-	//t_move	move;
 	int		ret;
 
+//	ft_init_move(cast);
 	cast->mlx = mlx_init();
 	mlx_get_screen_size(cast->mlx, &cast->sizex, &cast->sizey);
 	if (ft_setup_data_parse_cast(parse, cast) == 0)
@@ -74,7 +74,6 @@ int		ft_engine(t_parse *parse, t_cast *cast)
 		cast->miss_texture = ret;
 		return (ft_error(7));
 	}
-	//ft_move_keys(&move, cast);
 	mlx_hook(cast->win, 2, 1L << 0, ft_key_hook, cast);
 	mlx_hook(cast->win, 3, 1L << 1, ft_key_release, cast);
 	mlx_hook(cast->win, 33, 1L << 0, ft_close_window, cast);

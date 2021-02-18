@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:23:26 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/17 15:54:12 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/18 17:28:23 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,6 @@
 # include <math.h>
 # include "../minilibx-linux/mlx.h"
 # define BUFFER_SIZE 4096
-
-typedef struct		s_move
-{
-	int				forward;
-	int				back;
-	int				left;
-	int				right;
-	int				rot_left;
-	int				rot_right;
-	int				echap;
-	int				close;
-}					t_move;
 
 typedef struct		s_sprite
 {
@@ -141,6 +129,14 @@ typedef struct		s_cast
 	int				draw_endy;
 	int				stripe;
 	int				save;
+	int				forward;
+	int				back;
+	int				left;
+	int				right;
+	int				rot_left;
+	int				rot_right;
+	int				echap;
+	int				close;
 }					t_cast;
 
 typedef struct		s_parse
@@ -240,7 +236,8 @@ void				ft_texture_ns(t_cast *cast, t_tex *tex);
 void				ft_texture_ew(t_cast *cast, t_tex *tex);
 void				ft_sprite(t_cast *cast);
 void				my_mlx_pixel_put(t_cast *cast);
-void				ft_move_keys(t_move *move, t_cast *cast);
+void				ft_init_move(t_cast *cast);
+void				ft_manage_keys(t_cast *cast);
 int					ft_key_hook(int key, t_cast *cast);
 int					ft_key_release(int key, t_cast *cast);
 int					ft_close_window(t_cast *cast);

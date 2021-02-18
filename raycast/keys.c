@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 15:45:28 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/17 15:53:55 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/18 15:41:13 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int		ft_key_hook(int key, t_cast *cast)
 		if (cast->map[(int)cast->posy][(int)(cast->posx - cast->planex)] == 0)
 			cast->posx -= cast->planex;
 	}
-	if (key == 65361)
+	if (key == 65363)
 	{
 		cast->old_dirx = cast->dirx;
 		cast->dirx = (cast->dirx * cos(5 * (cast->pi / 180))) - (cast->diry * sin(5 * (cast->pi / 180)));
@@ -68,7 +68,7 @@ int		ft_key_hook(int key, t_cast *cast)
 		cast->planex = (cast->planex * cos(5 * (cast->pi / 180))) - (cast->planey * sin(5 * (cast->pi / 180)));
 		cast->planey = (cast->old_planex * sin(5 * (cast->pi / 180))) + (cast->planey * cos(5 * (cast->pi / 180)));
 	}
-	if (key == 65363)
+	if (key == 65361)
 	{
 		cast->old_dirx = cast->dirx;
 		cast->dirx = (cast->dirx * cos(-(5 * (cast->pi / 180)))) - (cast->diry * sin(-(5 * (cast->pi / 180))));
