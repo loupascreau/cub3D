@@ -1,15 +1,15 @@
 
 S  ./textures/mexicain.xpm
-NO ./textures/wood2.xpm
-WE	 ./textures/red.xpm
-EA     ./textures/diamond.xpm
-SO  ./textures/wood3.xpm
+NO ./textures/fff.xpm
+WE	 ./textures/barca.xpm
+EA     ./textures/world_cup.xpm
+SO  ./textures/ldc.xpm
 
-C  255 ,   100,,  180
-F 18 ,210,195
+C  255 ,   180,,  180
+F 100 ,210,195
 
 
-R 1000 800 
+R 1200 950 
 
     11111111111        11111111
     10020000201        10000001

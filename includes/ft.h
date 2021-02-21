@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:23:26 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/18 17:28:23 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/20 19:25:57 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ typedef struct		s_cast
 	double			tex_pos;
 	t_tex			*tex;
 	double			*buffer;
-	int				miss_texture;
 	t_sprite		sprite[100];
 	int				nbr_sprite;
 	double			spritex;

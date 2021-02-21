@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:29:45 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/17 14:20:02 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/20 19:26:11 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,19 +79,7 @@ int		ft_raycasting(t_cast *cast)
 		cast->delta_disty = fabs(1 / cast->ray_diry);
 		ft_rayon(cast);	
 		ft_dda(cast);
-		if (cast->miss_texture < 0)
-		{
-			free(cast->buffer);
-			ft_free_map(cast);
-			mlx_loop_end(cast->mlx);
-			mlx_destroy_image(cast->mlx, cast->img);
-			mlx_destroy_window(cast->mlx, cast->win);
-			mlx_destroy_display(cast->mlx);
-			free(cast->mlx);
-			exit(0);
-		}
-		else
-			ft_textures(cast);
+		ft_textures(cast);
 		cast->x++;
 	}
 	return (1);
