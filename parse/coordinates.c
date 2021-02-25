@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 12:23:18 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/19 14:35:05 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/25 14:25:55 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		ft_find_player(t_parse *parse)
 	int	j;
 
 	j = 0;
-	while (parse->tab[j])
+	while (j < parse->height)
 	{
 		i = 0;
 		while (parse->tab[j][i])
@@ -64,5 +64,5 @@ int		ft_find_player(t_parse *parse)
 		}
 		j++;
 	}
-	return (ft_error(3));
+	return (ft_exit_player_map(parse));
 }

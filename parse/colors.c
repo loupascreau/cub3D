@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 14:38:06 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/17 12:05:52 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/25 13:38:54 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		ft_fill_s(char *buf, t_parse *parse)
 	line = ft_substr(buf, parse->i, i);
 	tmp = ft_split(line, ' ', &count);
 	if (count != 2)
-		return (ft_error_parsing(7));
+		return (ft_exit_sprite(parse, line, tmp));
 	parse->s = ft_strdup(tmp[1]);
 	parse->i += ft_strlen(line);
 	free(tmp[0]);
@@ -74,7 +74,7 @@ int		ft_fill_f(char *buf, t_parse *parse)
 	tmp = ft_split(line, ',', &count);
 	if (count != 3 || ft_is_nbr(tmp[0]) == 0 ||
 	ft_is_nbr(tmp[1]) == 0 || ft_is_nbr(tmp[2]) == 0)
-		return (ft_error_parsing(6));
+		return (ft_exit_floor(parse, line, tmp, count));
 	if (!(parse->f = (char *)malloc(sizeof(char) * (6 + 1))))
 		return (0);
 	ft_fill_fc(&parse->f, &tmp);
@@ -102,7 +102,7 @@ int		ft_fill_c(char *buf, t_parse *parse)
 	tmp = ft_split(line, ',', &count);
 	if (count != 3 || ft_is_nbr(tmp[0]) == 0 ||
 	ft_is_nbr(tmp[1]) == 0 || ft_is_nbr(tmp[2]) == 0)
-		return (ft_error_parsing(5));
+		return (ft_exit_ceil(parse, line, tmp, count));
 	if (!(parse->c = (char *)malloc(sizeof(char) * (6 + 1))))
 		return (0);
 	ft_fill_fc(&parse->c, &tmp);

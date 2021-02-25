@@ -1,4 +1,4 @@
-SRCS		=	main.c \
+SRCS		=	ft_cub3d.c \
 				./parse/parse_file.c \
 				./parse/colors.c \
 				./parse/textures.c \
@@ -23,7 +23,11 @@ SRCS		=	main.c \
 				./raycast/sprite.c \
 				./raycast/move.c \
 				./errors/error.c \
+				./errors/exit_textures.c \
+				./errors/exit_colors_xy.c \
+				./errors/exit_parse.c \
 				./engine/engine.c \
+				./engine/textures_init.c \
 				./save/save.c \
 
 OBJS		=	${SRCS:.c=.o}

@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 11:19:56 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/17 11:56:59 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/25 13:01:15 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		ft_fill_x_y(char *buf, t_parse *parse)
 	parse->i += ft_strlen(line);
 	tmp = ft_split(line, ' ', &count);
 	if (count != 3 || ft_is_nbr(tmp[1]) == 0 || ft_is_nbr(tmp[2]) == 0)
-		return (ft_error_parsing(4));
+		return (ft_exit_xy(parse, line, tmp, count));
 	parse->x = ft_atoi(tmp[1]);
 	free(tmp[1]);
 	parse->y = ft_atoi(tmp[2]);
@@ -56,7 +56,7 @@ int		ft_fill_no(char *buf, t_parse *parse)
 	line = ft_substr(buf, parse->i, i);
 	tmp = ft_split(line, ' ', &count);
 	if (count != 2)
-		return (ft_error_parsing(0));
+		return (ft_exit_north(parse, line, tmp));
 	parse->no = ft_strdup(tmp[1]);
 	parse->i += ft_strlen(line);
 	free(tmp[0]);
@@ -83,7 +83,7 @@ int		ft_fill_so(char *buf, t_parse *parse)
 	line = ft_substr(buf, parse->i, i);
 	tmp = ft_split(line, ' ', &count);
 	if (count != 2)
-		return (ft_error_parsing(1));
+		return (ft_exit_south(parse, line, tmp));
 	parse->so = ft_strdup(tmp[1]);
 	parse->i += ft_strlen(line);
 	free(tmp[0]);
@@ -110,7 +110,7 @@ int		ft_fill_we(char *buf, t_parse *parse)
 	line = ft_substr(buf, parse->i, i);
 	tmp = ft_split(line, ' ', &count);
 	if (count != 2)
-		return (ft_error_parsing(2));
+		return (ft_exit_west(parse, line, tmp));
 	parse->we = ft_strdup(tmp[1]);
 	parse->i += ft_strlen(line);
 	free(tmp[0]);
@@ -137,7 +137,7 @@ int		ft_fill_ea(char *buf, t_parse *parse)
 	line = ft_substr(buf, parse->i, i);
 	tmp = ft_split(line, ' ', &count);
 	if (count != 2)
-		return (ft_error_parsing(3));
+		return (ft_exit_east(parse, line, tmp));
 	parse->ea = ft_strdup(tmp[1]);
 	parse->i += ft_strlen(line);
 	free(tmp[0]);

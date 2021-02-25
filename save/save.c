@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 10:50:28 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/17 14:50:40 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/25 18:20:41 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ int		ft_initialisation(t_cast *cast, t_parse *parse, t_tex *tex)
 	if ((ret = ft_init_texture(cast, tex, 64, parse)) < 0)
 	{
 		ft_free_parse(parse);
-		cast->miss_texture = ret;
 		return (ft_error(7));
 	}
 	if (ft_raycasting(cast) == 0)
@@ -117,6 +116,7 @@ int		ft_save(t_cast *cast, t_parse *parse)
 	mlx_destroy_image(cast->mlx, cast->tex[3].img);
 	mlx_destroy_image(cast->mlx, cast->tex[4].img);
 	mlx_destroy_display(cast->mlx);
+	close(save.fd);
 	free(cast->mlx);
 	exit(0);
 	return (0);
