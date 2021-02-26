@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 11:18:45 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/25 17:54:02 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/26 11:24:19 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		ft_map_at_end(char *buf, t_parse *parse)
 			return (1);
 		}
 	}
-	return (ft_error_parsing(9));
+	return (ft_exit_parse_file(parse));
 }
 
 int		ft_list_params_textures(char *buf, t_parse *parse)
@@ -82,7 +82,7 @@ int		ft_list_params_textures(char *buf, t_parse *parse)
 
 int		ft_list_params_colors_xy(char *buf, t_parse *parse)
 {
-	if (buf[parse->i] == 'S' && parse->sprite == 0)
+	if (buf[parse->i] == 'S'  && buf[parse->i + 1] == ' ' && parse->sprite == 0)
 	{
 		if (ft_fill_s(buf, parse) == 0)
 			return (0);
@@ -127,6 +127,8 @@ int		ft_read_map(t_parse *parse)
 	}
 	if (ft_map_at_end(buf, parse) == 0)
 		return (0);
+	if (parse->x == 0 || parse->y == 0)
+		return (ft_exit_screen(parse));
 	printf("x = %d, y = %d\n", parse->x, parse->y);
 	printf("parse->no = %s\n", parse->no);
 	printf("parse->so = %s\n", parse->so);

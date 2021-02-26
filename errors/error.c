@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 10:16:25 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/18 10:32:13 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/26 11:12:47 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ int		ft_error(int nbr)
 		write(2, "Error\nYour file texture isn't correct\n", 38);
 	if (nbr == 9)
 		write(2, "Error\nProblem while saving .bmp\n", 32);
+	return (0);
+}
+
+int		ft_error_screen(int nbr)
+{
+	if (nbr == 0)
+		write(2, "Error\nYour screen resolution cannot be 0\n", 41);
 	return (0);
 }
 
