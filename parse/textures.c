@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 11:19:56 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/25 13:01:15 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/26 19:01:46 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		ft_fill_x_y(char *buf, t_parse *parse)
 
 	count = 0;
 	i = 0;
-	parse->reso = 1;
+	parse->reso = parse->i;
 	while (buf[parse->i + i] != '\n')
 		i++;
 	line = ft_substr(buf, parse->i, i);
@@ -50,13 +50,13 @@ int		ft_fill_no(char *buf, t_parse *parse)
 
 	i = 0;
 	count = 0;
-	parse->north = 1;
+	parse->north = parse->i;
 	while (buf[parse->i + i] != '\n')
 		i++;
 	line = ft_substr(buf, parse->i, i);
 	tmp = ft_split(line, ' ', &count);
 	if (count != 2)
-		return (ft_exit_north(parse, line, tmp));
+		return (ft_exit_north(parse, line, tmp, count));
 	parse->no = ft_strdup(tmp[1]);
 	parse->i += ft_strlen(line);
 	free(tmp[0]);
@@ -77,13 +77,13 @@ int		ft_fill_so(char *buf, t_parse *parse)
 
 	i = 0;
 	count = 0;
-	parse->south = 1;
+	parse->south = parse->i;
 	while (buf[parse->i + i] != '\n')
 		i++;
 	line = ft_substr(buf, parse->i, i);
 	tmp = ft_split(line, ' ', &count);
 	if (count != 2)
-		return (ft_exit_south(parse, line, tmp));
+		return (ft_exit_south(parse, line, tmp, count));
 	parse->so = ft_strdup(tmp[1]);
 	parse->i += ft_strlen(line);
 	free(tmp[0]);
@@ -104,13 +104,13 @@ int		ft_fill_we(char *buf, t_parse *parse)
 
 	i = 0;
 	count = 0;
-	parse->west = 1;
+	parse->west = parse->i;
 	while (buf[parse->i + i] != '\n')
 		i++;
 	line = ft_substr(buf, parse->i, i);
 	tmp = ft_split(line, ' ', &count);
 	if (count != 2)
-		return (ft_exit_west(parse, line, tmp));
+		return (ft_exit_west(parse, line, tmp, count));
 	parse->we = ft_strdup(tmp[1]);
 	parse->i += ft_strlen(line);
 	free(tmp[0]);
@@ -131,13 +131,13 @@ int		ft_fill_ea(char *buf, t_parse *parse)
 
 	i = 0;
 	count = 0;
-	parse->east = 1;
+	parse->east = parse->i;
 	while (buf[parse->i + i] != '\n')
 		i++;
 	line = ft_substr(buf, parse->i, i);
 	tmp = ft_split(line, ' ', &count);
 	if (count != 2)
-		return (ft_exit_east(parse, line, tmp));
+		return (ft_exit_east(parse, line, tmp, count));
 	parse->ea = ft_strdup(tmp[1]);
 	parse->i += ft_strlen(line);
 	free(tmp[0]);

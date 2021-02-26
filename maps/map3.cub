@@ -1,13 +1,11 @@
-
-S  ./textures/star.xpm
+S  ./textures/mexicain.xpm
 NO ./textures/fff.xpm
 WE	 ./textures/barca.xpm
 EA     ./textures/world_cup.xpm
 SO  ./textures/ldc.xpm
-
 C  255 ,   180,,  180
 F 100 ,210,195
-F 100 ,210,195
+
 
 
 R 1200 950 
@@ -30,3 +28,4 @@ R 1200 950
  1002N000000000000000020000002000001
  11111100211111111110000111101111021
  11111111111111111111111111111111111
+

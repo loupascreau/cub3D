@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 14:38:06 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/26 11:20:59 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/26 19:02:02 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ int		ft_fill_s(char *buf, t_parse *parse)
 
 	i = 0;
 	count = 0;
-	parse->sprite = 1;
+	parse->sprite = parse->i;
 	while (buf[parse->i + i] != '\n')
 		i++;
 	line = ft_substr(buf, parse->i, i);
 	tmp = ft_split(line, ' ', &count);
 	if (count != 2)
-		return (ft_exit_sprite(parse, line, tmp));
+		return (ft_exit_sprite(parse, line, tmp, count));
 	parse->s = ft_strdup(tmp[1]);
 	parse->i += ft_strlen(line);
 	free(tmp[0]);
@@ -66,7 +66,7 @@ int		ft_fill_f(char *buf, t_parse *parse)
 
 	i = 0;
 	count = 0;
-	parse->floor = 1;
+	parse->floor = parse->i;
 	while (buf[parse->i + i] != '\n')
 		i++;
 	line = ft_substr(buf, parse->i + 1, i - 1);
@@ -94,7 +94,7 @@ int		ft_fill_c(char *buf, t_parse *parse)
 
 	i = 0;
 	count = 0;
-	parse->ceil = 1;
+	parse->ceil = parse->i;
 	while (buf[parse->i + i] != '\n')
 		i++;
 	line = ft_substr(buf, parse->i + 1, i - 1);

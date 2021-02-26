@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:23:26 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/26 11:21:37 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/26 19:02:29 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,7 @@ int					ft_fill_f(char *buf, t_parse *parse);
 int					ft_fill_c(char *buf, t_parse *parse);
 void				ft_fill_fc(char **str, char ***tmp2);
 int					ft_is_nbr(char *s1);
+int					ft_bad_infos(t_parse *parse, char *buf);
 void				ft_free(char *line, char **tmp);
 void				ft_free_map(t_cast *cast);
 void				ft_free_parse(t_parse *parse);
@@ -214,6 +215,7 @@ void				ft_fill_empty(char **tab, t_parse *parse);
 int					ft_parse_map(char *buf, t_parse *parse);
 int					ft_check_value(char c, int *letter);
 int					ft_check_map(char **tab, int *letter, t_parse *parse);
+int					ft_check_double(char *buf, t_parse *parse);
 int					get_next_line(t_parse *parse, char *buf, char **line);
 char				*ft_strdup(char *s);
 char				*ft_strjoin(char *s1, char *s2);
@@ -248,19 +250,20 @@ int					ft_close_window(t_cast *cast);
 int					ft_expose(t_cast *cast);
 int					ft_error(int nbr);
 int					ft_error_parsing(int nbr);
-int					ft_error_screen(int nbr);
-int					ft_exit_north(t_parse *parse, char *line, char **tmp);
-int					ft_exit_south(t_parse *parse, char *line, char **tmp);
-int					ft_exit_west(t_parse *parse, char *line, char **tmp);
-int					ft_exit_east(t_parse *parse, char *line, char **tmp);
-int					ft_exit_sprite(t_parse *parse, char *line, char **tmp);
+int					ft_error_file(int nbr);
+int					ft_exit_north(t_parse *parse, char *line, char **tmp, int count);
+int					ft_exit_south(t_parse *parse, char *line, char **tmp, int count);
+int					ft_exit_west(t_parse *parse, char *line, char **tmp, int count);
+int					ft_exit_east(t_parse *parse, char *line, char **tmp, int count);
+int					ft_exit_sprite(t_parse *parse, char *line, char **tmp, int ount);
 int					ft_exit_xy(t_parse *parse, char *line, char **tmp, int count);
 int					ft_exit_floor(t_parse *parse, char *line, char **tmp, int count);
 int					ft_exit_ceil(t_parse *parse, char *line, char **tmp, int count);
 int					ft_exit_player_map(t_parse *parse);
 int					ft_exit_check_map(t_parse *parse);
 int					ft_exit_map_close(t_parse *parse);
-int					ft_exit_screen(t_parse *parse);
+int					ft_exit_file(t_parse *parse);
+int					ft_exit_double(t_parse *parse, int nbr);
 int					ft_exit_parse_file(t_parse *parse);
 
 #endif

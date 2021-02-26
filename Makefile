@@ -5,7 +5,9 @@ SRCS		=	ft_cub3d.c \
 				./parse/check_digit.c \
 				./parse/parse_map.c \
 				./parse/check_map.c \
+				./parse/check_double.c \
 				./parse/coordinates.c \
+				./parse/bad_infos.c \
 				./parse/convert/ft_convert_base.c \
 				./parse/convert/ft_convert_base2.c \
 				./get_next_line/get_next_line.c \

@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 10:16:25 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/26 11:12:47 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/26 17:57:46 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,14 @@ int		ft_error(int nbr)
 	return (0);
 }
 
-int		ft_error_screen(int nbr)
+int		ft_error_file(int nbr)
 {
 	if (nbr == 0)
 		write(2, "Error\nYour screen resolution cannot be 0\n", 41);
+	if (nbr == 1)
+		write(2, "Error\nline in double in .cub file\n", 34);
+	if (nbr == 2)
+		write(2, "Error\nBad informations in your .cub file\n", 41);
 	return (0);
 }
 

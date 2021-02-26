@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 14:21:04 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/26 10:44:21 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/26 17:37:52 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int		ft_exit_map_close(t_parse *parse)
 	return (ft_error_parsing(8));
 }
 
-int		ft_exit_screen(t_parse *parse)
+int		ft_exit_file(t_parse *parse)
 {
 	int	j;
 
@@ -93,24 +93,24 @@ int		ft_exit_screen(t_parse *parse)
 	free(parse->s);
 	free(parse->f);
 	free(parse->c);
-	return (ft_error_screen(0));
+	return (ft_error_file(0));
 }
 
 int		ft_exit_parse_file(t_parse *parse)
 {
-	if (parse->north == 1)
+	if (parse->north >= 0)
 		free(parse->no);
-	if (parse->east == 1)
+	if (parse->east >= 0)
 		free(parse->ea);
-	if (parse->south == 1)
+	if (parse->south >= 0)
 		free(parse->so);
-	if (parse->west == 1)
+	if (parse->west >= 0)
 		free(parse->we);
-	if (parse->sprite == 1)
+	if (parse->sprite >= 0)
 		free(parse->s);
-	if (parse->floor == 1)
+	if (parse->floor >= 0)
 		free(parse->f);
-	if (parse->ceil == 1)
+	if (parse->ceil >= 0)
 		free(parse->c);
 	return (ft_error_parsing(9));
 }
