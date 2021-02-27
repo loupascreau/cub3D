@@ -2,7 +2,7 @@ S ./textures/mexicain.xpm
     	R 1280 950
 	NO       ./textures/barca.xpm
 		SO ./textures/world_cup.xpm
-	WE ./textures/fff.xpm
+		WE ./textures/fff.xpm
 
 EA    ./textures/ldc.xpm
 

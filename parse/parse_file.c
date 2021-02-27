@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 11:18:45 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/26 18:56:37 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/27 13:59:00 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,26 +59,20 @@ int		ft_list_params_textures(char *buf, t_parse *parse)
 {
 	if (ft_check_double(buf, parse) == 0)
 		return (ft_exit_double(parse, 1));
-	if ((buf[parse->i] == 'N' && buf[parse->i + 1] == 'O') && parse->north == -1)
+	if ((buf[parse->i] == 'N' && buf[parse->i + 1] == 'O') &&
+	parse->north == -1)
 	{
 		if (ft_fill_no(buf, parse) == 0)
 			return (0);
 	}
-	if ((buf[parse->i] == 'S' && buf[parse->i + 1] == 'O') && parse->south == -1)
+	if ((buf[parse->i] == 'S' && buf[parse->i + 1] == 'O') &&
+	parse->south == -1)
 	{
 		if (ft_fill_so(buf, parse) == 0)
 			return (0);
 	}
-	if ((buf[parse->i] == 'W' && buf[parse->i + 1] == 'E') && parse->west == -1)
-	{
-		if (ft_fill_we(buf, parse) == 0)
-			return (0);
-	}
-	if ((buf[parse->i] == 'E' && buf[parse->i + 1] == 'A') && parse->east == -1)
-	{
-		if (ft_fill_ea(buf, parse) == 0)
-			return (0);
-	}
+	if (ft_list_params_textures_bis(buf, parse) == 0)
+		return (0);
 	return (1);
 }
 
@@ -86,7 +80,8 @@ int		ft_list_params_colors_xy(char *buf, t_parse *parse)
 {
 	if (ft_check_double(buf, parse) == 0)
 		return (ft_exit_double(parse, 1));
-	if (buf[parse->i] == 'S'  && buf[parse->i + 1] == ' ' && parse->sprite == -1)
+	if (buf[parse->i] == 'S' && buf[parse->i + 1] == ' ' &&
+	parse->sprite == -1)
 	{
 		if (ft_fill_s(buf, parse) == 0)
 			return (0);
@@ -118,19 +113,18 @@ int		ft_read_map(t_parse *parse)
 	if (parse->fd < 0)
 		return (ft_error(2));
 	if ((ret = read(parse->fd, buf, BUFFER_SIZE)) < 1)
+	{
+		if (errno == 21)
+		{
+			perror("Error\nYour .cub");
+			return (0);
+		}
 		return (ft_error(5));
+	}
 	parse->i = 0;
 	buf[ret] = '\0';
-	while (buf[parse->i])
-	{
-		if (ft_list_params_textures(buf, parse) == 0)
-			return (0);
-		if (ft_list_params_colors_xy(buf, parse) == 0)
-			return (0);
-		if (ft_bad_infos(parse, buf) == 0)
-			return (0);
-		parse->i++;
-	}
+	if (ft_fill_file(buf, parse) == 0)
+		return (0);
 	if (ft_map_at_end(buf, parse) == 0)
 		return (0);
 	if (parse->x == 0 || parse->y == 0)

@@ -1,5 +1,6 @@
 SRCS		=	ft_cub3d.c \
 				./parse/parse_file.c \
+				./parse/parse_file_bis.c \
 				./parse/colors.c \
 				./parse/textures.c \
 				./parse/check_digit.c \
@@ -23,6 +24,7 @@ SRCS		=	ft_cub3d.c \
 				./raycast/keys.c \
 				./raycast/expose.c \
 				./raycast/sprite.c \
+				./raycast/draw_sprite.c \
 				./raycast/move.c \
 				./errors/error.c \
 				./errors/exit_textures.c \

@@ -1,10 +1,10 @@
 R 1000 800
 
-NO ./gryffindor.xpm
-SO ./ravenclaw.xpm
-WE ./hufflepuff.xpm
-EA ./slytherin.xpm
-S ./path_to_the_sprite_texture
+NO ./textures/gryffindor.xpm
+SO ./textures/ravenclaw.xpm
+WE ./textures/hufflepuff.xpm
+EA ./textures/slytherin.xpm
+S ./textures/star.xpm
 
 F 111,62,20
 C 225,210,200

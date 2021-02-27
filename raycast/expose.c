@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 15:49:45 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/20 19:30:14 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/27 19:34:46 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		ft_expose(t_cast *cast)
 {
-	my_mlx_pixel_put(cast);	
+	my_mlx_pixel_put(cast);
 	if (ft_raycasting(cast) == 0)
 		return (0);
 	ft_sprite(cast);

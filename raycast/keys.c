@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 15:45:28 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/20 19:16:45 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/27 16:01:21 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ int		ft_key_hook(int key, t_cast *cast)
 	if (key == 100)
 		cast->right = 1;
 	if (key == 97)
-		cast->left = 1;	
+		cast->left = 1;
 	if (key == 65363)
 		cast->rot_right = 1;
 	if (key == 65361)
 		cast->rot_left = 1;
 	if (key == 65307)
-		cast->echap = 1;	
+		cast->echap = 1;
 	return (0);
 }
 

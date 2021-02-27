@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 15:29:45 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/20 19:26:11 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/27 16:06:24 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,11 @@ void	ft_dda(t_cast *cast)
 			cast->hit = 1;
 	}
 	if (cast->side == 0)
-		cast->perp_wall_dist = (cast->mapx - cast->posx + (1 - cast->stepx) / 2) / cast->ray_dirx;
+		cast->perp_wall_dist = (cast->mapx - cast->posx + (1 - cast->stepx) / 2)
+		/ cast->ray_dirx;
 	else
-		cast->perp_wall_dist = (cast->mapy - cast->posy + (1 - cast->stepy) / 2) / cast->ray_diry;
+		cast->perp_wall_dist = (cast->mapy - cast->posy + (1 - cast->stepy) / 2)
+		/ cast->ray_diry;
 	cast->buffer[cast->x] = cast->perp_wall_dist;
 }
 
@@ -77,7 +79,7 @@ int		ft_raycasting(t_cast *cast)
 		cast->mapy = cast->posy;
 		cast->delta_distx = fabs(1 / cast->ray_dirx);
 		cast->delta_disty = fabs(1 / cast->ray_diry);
-		ft_rayon(cast);	
+		ft_rayon(cast);
 		ft_dda(cast);
 		ft_textures(cast);
 		cast->x++;

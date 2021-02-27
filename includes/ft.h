@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:23:26 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/26 19:02:29 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/27 19:31:04 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
+# include <errno.h>
 # include "../minilibx-linux/mlx.h"
 # define BUFFER_SIZE 4096
 
@@ -189,6 +190,7 @@ char				*ft_convert_base(char *nbr, char *base_from, char *base_to);
 int					ft_check_argv(char *argv);
 void				ft_init(t_parse *parse);
 int					ft_list_params_textures(char *buf, t_parse *parse);
+int					ft_list_params_textures_bis(char *buf, t_parse *parse);
 int					ft_list_params_colors_xy(char *buf, t_parse *parse);
 int					ft_fill_ea(char *buf, t_parse *parse);
 int					ft_fill_we(char *buf, t_parse *parse);
@@ -205,6 +207,7 @@ void				ft_free(char *line, char **tmp);
 void				ft_free_map(t_cast *cast);
 void				ft_free_parse(t_parse *parse);
 int					ft_read_map(t_parse *parse);
+int					ft_fill_file(char *buf, t_parse *parse);
 int					ft_find_player(t_parse *parse);
 void				ft_set_direction(t_parse *parse, char c);
 void				ft_last(t_parse *parse);
@@ -241,6 +244,7 @@ void				ft_textures(t_cast *cast);
 void				ft_texture_ns(t_cast *cast, t_tex *tex);
 void				ft_texture_ew(t_cast *cast, t_tex *tex);
 void				ft_sprite(t_cast *cast);
+void				ft_draw_sprite(t_cast *cast, int d, int y);
 void				my_mlx_pixel_put(t_cast *cast);
 void				ft_init_move(t_cast *cast);
 void				ft_manage_keys(t_cast *cast);

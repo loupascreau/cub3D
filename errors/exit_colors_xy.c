@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 12:50:21 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/26 19:07:29 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/27 13:22:19 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		ft_exit_xy(t_parse *parse, char *line, char **tmp, int count)
 {
 	int i;
 
-	i = 1;
+	i = 0;
 	if (parse->north >= 0)
 		free(parse->no);
 	if (parse->east >= 0)
@@ -36,7 +36,6 @@ int		ft_exit_xy(t_parse *parse, char *line, char **tmp, int count)
 		free(tmp[i]);
 		i++;
 	}
-	free(tmp[0]);
 	free(tmp);
 	free(line);
 	return (ft_error_parsing(4));

@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 10:54:11 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/17 11:50:58 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/02/27 19:38:42 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ void	ft_texture_ew(t_cast *cast, t_tex *tex)
 	{
 		while (cast->draw_start < cast->draw_end)
 		{
-			cast->texy = abs((((cast->draw_start * 256 - cast->screen_height * 128 + cast->line_height * 128) * 64) / cast->line_height) / 256);
-			ft_memcpy(cast->addr + 4 * cast->screen_width * cast->draw_start + cast->x * 4, &tex[3].addr[cast->texy % 64 * tex[3].size_line + cast->texx % 64 * tex[3].bits_per_pixels / 8], sizeof(int));
+			cast->texy = abs((((cast->draw_start * 256 - cast->screen_height
+			* 128 + cast->line_height * 128) * 64) / cast->line_height) / 256);
+			ft_memcpy(cast->addr + 4 * cast->screen_width * cast->draw_start +
+			cast->x * 4, &tex[3].addr[cast->texy % 64 * tex[3].size_line +
+			cast->texx % 64 * tex[3].bits_per_pixels / 8], sizeof(int));
 			cast->draw_start++;
 		}
 	}
@@ -27,12 +30,14 @@ void	ft_texture_ew(t_cast *cast, t_tex *tex)
 	{
 		while (cast->draw_start < cast->draw_end)
 		{
-			cast->texy = abs((((cast->draw_start * 256 - cast->screen_height * 128 + cast->line_height * 128) * 64) / cast->line_height) / 256);
-			ft_memcpy(cast->addr + 4 * cast->screen_width * cast->draw_start + cast->x * 4, &tex[2].addr[cast->texy % 64 * tex[2].size_line + cast->texx % 64 * tex[2].bits_per_pixels / 8], sizeof(int));
+			cast->texy = abs((((cast->draw_start * 256 - cast->screen_height
+			* 128 + cast->line_height * 128) * 64) / cast->line_height) / 256);
+			ft_memcpy(cast->addr + 4 * cast->screen_width * cast->draw_start +
+			cast->x * 4, &tex[2].addr[cast->texy % 64 * tex[2].size_line +
+			cast->texx % 64 * tex[2].bits_per_pixels / 8], sizeof(int));
 			cast->draw_start++;
 		}
 	}
-
 }
 
 void	ft_texture_ns(t_cast *cast, t_tex *tex)
@@ -41,8 +46,11 @@ void	ft_texture_ns(t_cast *cast, t_tex *tex)
 	{
 		while (cast->draw_start < cast->draw_end)
 		{
-			cast->texy = abs((((cast->draw_start * 256 - cast->screen_height * 128 + cast->line_height * 128) * 64) / cast->line_height) / 256);
-			ft_memcpy(cast->addr + 4 * cast->screen_width * cast->draw_start + cast->x * 4, &tex[1].addr[cast->texy % 64 * tex[1].size_line + cast->texx % 64 * tex[1].bits_per_pixels / 8], sizeof(int));
+			cast->texy = abs((((cast->draw_start * 256 - cast->screen_height
+			* 128 + cast->line_height * 128) * 64) / cast->line_height) / 256);
+			ft_memcpy(cast->addr + 4 * cast->screen_width * cast->draw_start +
+			cast->x * 4, &tex[1].addr[cast->texy % 64 * tex[1].size_line +
+			cast->texx % 64 * tex[1].bits_per_pixels / 8], sizeof(int));
 			cast->draw_start++;
 		}
 	}
@@ -50,8 +58,11 @@ void	ft_texture_ns(t_cast *cast, t_tex *tex)
 	{
 		while (cast->draw_start < cast->draw_end)
 		{
-			cast->texy = abs((((cast->draw_start * 256 - cast->screen_height * 128 + cast->line_height * 128) * 64) / cast->line_height) / 256);
-			ft_memcpy(cast->addr + 4 * cast->screen_width * cast->draw_start + cast->x * 4, &tex[0].addr[cast->texy % 64 * tex[0].size_line + cast->texx % 64 * tex[0].bits_per_pixels / 8], sizeof(int));
+			cast->texy = abs((((cast->draw_start * 256 - cast->screen_height
+			* 128 + cast->line_height * 128) * 64) / cast->line_height) / 256);
+			ft_memcpy(cast->addr + 4 * cast->screen_width * cast->draw_start +
+			cast->x * 4, &tex[0].addr[cast->texy % 64 * tex[0].size_line +
+			cast->texx % 64 * tex[0].bits_per_pixels / 8], sizeof(int));
 			cast->draw_start++;
 		}
 	}
