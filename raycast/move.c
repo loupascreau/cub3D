@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/17 14:57:55 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/27 16:07:37 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/03/01 18:45:06 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	ft_right(t_cast *cast)
 	if (cast->right == 1)
 	{
 		if (cast->map[(int)(cast->posy + cast->planey)][(int)cast->posx] == 0)
-			cast->posy += cast->planey / 8;
+			cast->posy += cast->planey / 9;
 		if (cast->map[(int)cast->posy][(int)(cast->posx + cast->planex)] == 0)
-			cast->posx += cast->planex / 8;
+			cast->posx += cast->planex / 9;
 	}
 	if (cast->rot_right == 1)
 	{
@@ -53,9 +53,9 @@ void	ft_left(t_cast *cast)
 	if (cast->left == 1)
 	{
 		if (cast->map[(int)(cast->posy - cast->planey)][(int)cast->posx] == 0)
-			cast->posy -= cast->planey / 8;
+			cast->posy -= cast->planey / 9;
 		if (cast->map[(int)cast->posy][(int)(cast->posx - cast->planex)] == 0)
-			cast->posx -= cast->planex / 8;
+			cast->posx -= cast->planex / 9;
 	}
 	if (cast->rot_left == 1)
 	{
