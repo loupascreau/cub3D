@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 10:50:28 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/25 18:20:41 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/03/01 15:29:25 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,6 @@ void	ft_write_bmp(t_cast *cast, t_save *save)
 
 int		ft_initialisation(t_cast *cast, t_parse *parse, t_tex *tex)
 {
-	int		ret;
-
 	cast->mlx = mlx_init();
 	mlx_get_screen_size(cast->mlx, &cast->sizex, &cast->sizey);
 	if (ft_setup_data_parse_cast(parse, cast) == 0)
@@ -87,9 +85,9 @@ int		ft_initialisation(t_cast *cast, t_parse *parse, t_tex *tex)
 	cast->addr = mlx_get_data_addr(cast->img, &cast->bits_per_pixels,
 	&cast->size_line, &cast->endian);
 	my_mlx_pixel_put(cast);
-	if ((ret = ft_init_texture(cast, tex, 64, parse)) < 0)
+	if (ft_init_texture(cast, tex, 64, parse) < 0)
 	{
-		ft_free_parse(parse);
+		ft_exit_prog2(parse, cast);
 		return (ft_error(7));
 	}
 	if (ft_raycasting(cast) == 0)

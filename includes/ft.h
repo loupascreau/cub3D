@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 12:23:26 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/27 19:31:04 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/03/01 16:45:36 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,7 @@ int					ft_fill_x_y(char *buf, t_parse *parse);
 int					ft_fill_s(char *buf, t_parse *parse);
 int					ft_fill_f(char *buf, t_parse *parse);
 int					ft_fill_c(char *buf, t_parse *parse);
-void				ft_fill_fc(char **str, char ***tmp2);
+int					ft_fill_fc(char **str, char ***tmp2);
 int					ft_is_nbr(char *s1);
 int					ft_bad_infos(t_parse *parse, char *buf);
 void				ft_free(char *line, char **tmp);
@@ -263,11 +263,14 @@ int					ft_exit_sprite(t_parse *parse, char *line, char **tmp, int ount);
 int					ft_exit_xy(t_parse *parse, char *line, char **tmp, int count);
 int					ft_exit_floor(t_parse *parse, char *line, char **tmp, int count);
 int					ft_exit_ceil(t_parse *parse, char *line, char **tmp, int count);
+int					ft_exit_cf(t_parse *parse, char **tmp, int count);
 int					ft_exit_player_map(t_parse *parse);
 int					ft_exit_check_map(t_parse *parse);
 int					ft_exit_map_close(t_parse *parse);
 int					ft_exit_file(t_parse *parse);
 int					ft_exit_double(t_parse *parse, int nbr);
 int					ft_exit_parse_file(t_parse *parse);
+void				ft_exit_prog(t_parse *parse, t_cast *cast);
+void				ft_exit_prog2(t_parse *parse, t_cast *cast);
 
 #endif

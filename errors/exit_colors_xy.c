@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 12:50:21 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/27 13:22:19 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/03/01 16:53:05 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,4 +114,33 @@ int		ft_exit_double(t_parse *parse, int nbr)
 	if (parse->ceil >= 0)
 		free(parse->c);
 	return (ft_error_file(nbr));
+}
+
+int		ft_exit_cf(t_parse *parse, char **tmp, int count)
+{
+	int i;
+
+	i = 1;
+	if (parse->north >= 0)
+		free(parse->no);
+	if (parse->east >= 0)
+		free(parse->ea);
+	if (parse->south >= 0)
+		free(parse->so);
+	if (parse->west >= 0)
+		free(parse->we);
+	if (parse->sprite >= 0)
+		free(parse->s);
+	if (parse->ceil >= 0)
+		free(parse->c);
+	if (parse->floor >= 0)
+		free(parse->f);
+	while (i < count)
+	{
+		free(tmp[i]);
+		i++;
+	}
+	free(tmp[0]);
+	free(tmp);
+	return (ft_error_parsing(11));
 }

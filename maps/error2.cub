@@ -3,12 +3,12 @@ NO ./textures/fff.xpm
 WE	 ./textures/barca.xpm
 EA     ./textures/world_cup.xpm
 SO  ./textures/ldc.xpm
-C  255 ,   180,,  180
+C  256 ,   180,,  180
 F 100 ,210,195
 
 
 
-R 1200 900 
+R 1200 900
 
     11111111111        11111111
     10020000201        10000001

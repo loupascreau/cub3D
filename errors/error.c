@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 10:16:25 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/26 17:57:46 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/03/01 16:52:59 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,16 @@ int		ft_error_parsing(int nbr)
 		write(2, "Error\nFile is missing needed informations\n", 42);
 	if (nbr == 10)
 		write(2, "Error\nMap rules not respected\n", 30);
+	if (nbr == 11)
+		write(2, "Error\nYour RGB is upper than 255\n", 33);
 	return (0);
+}
+
+void	ft_exit_prog2(t_parse *parse, t_cast *cast)
+{
+	ft_free_parse(parse);
+	ft_free_map(cast);
+	mlx_destroy_image(cast->mlx, cast->img);
+	mlx_destroy_display(cast->mlx);
+	free(cast->mlx);
 }

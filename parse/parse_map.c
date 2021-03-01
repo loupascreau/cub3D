@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@stduent.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 10:49:35 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/02/17 11:26:51 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/03/01 17:07:48 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,9 @@ int		ft_parse_map(char *buf, t_parse *parse)
 			return (ft_error(4));
 		j++;
 	}
-	if (ft_find_player(parse) == 0)
-		return (0);
 	if (ft_check_map(parse->tab, &parse->letter, parse) == 0)
+		return (0);
+	if (ft_find_player(parse) == 0)
 		return (0);
 	ft_fill_empty(parse->tab, parse);
 	return (1);
