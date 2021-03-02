@@ -1,14 +1,14 @@
-EA    ./textures/ldc.xpm
-	NO       ./textures/barca.xpm
-		SO ./textures/world_cup.xpm
-		WE ./textures/fff.xpm
+EA    ./textures/wood2.xpm
+	NO       ./textures/eagle.xpm
+		SO ./textures/redbrick.xpm
+		WE ./textures/wood3.xpm
 
 
 F    215,,,, 210 ,,    195
 
-    	R 1024 720
+    	R 1200 900
 	C 255   ,, 100,,100
-S ./textures/mexicain.xpm
+S ./textures/barrel.xpm
 
 
                   1111111111111
