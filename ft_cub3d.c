@@ -51,8 +51,10 @@ int		ft_check_save(char *str, t_cast *cast)
 int		ft_argc_argv(int argc, char **argv, t_cast *cast)
 {
 	cast->save = 0;
-	if (argc == 1 || argc > 3)
+	if (argc == 1)
 		return (ft_error(0));
+	if (argc > 3)
+		return (ft_error_file(3));
 	if (ft_check_argv(argv[1]) == 0)
 		return (ft_error(1));
 	if (ft_check_save(argv[2], cast) == 0)

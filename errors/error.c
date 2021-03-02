@@ -49,6 +49,8 @@ int		ft_error_file(int nbr)
 		write(2, "Error\nline in double in .cub file\n", 34);
 	if (nbr == 2)
 		write(2, "Error\nBad informations in your .cub file\n", 41);
+	if (nbr == 3)
+		write(2, "Error\nToo many arguments\n", 25);
 	return (0);
 }
 

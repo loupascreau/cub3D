@@ -28,14 +28,55 @@ int		ft_after_new_line(t_parse *parse, char *buf, int i)
 	return (1);
 }
 
+int		ft_exit_bad_id(t_parse *parse, int nbr)
+{
+	if (parse->north >= 0)
+		free(parse->no);
+	if (parse->east >= 0)
+		free(parse->ea);
+	if (parse->south >= 0)
+		free(parse->so);
+	if (parse->west >= 0)
+		free(parse->we);
+	if (parse->sprite >= 0)
+		free(parse->s);
+	if (parse->floor >= 0)
+		free(parse->f);
+	if (parse->ceil >= 0)
+		free(parse->c);
+	return (ft_error_parsing(nbr));
+}
+
+int		ft_check_id(t_parse *parse, char *buf)
+{
+	if (buf[parse->i] == 'S' && (buf[parse->i + 1] != ' ' &&
+	buf[parse->i + 1] != 'O') && parse->i <= parse->last)
+		return (ft_exit_bad_id(parse, 7));
+	if (buf[parse->i] == 'W' && buf[parse->i + 1] == 'E' &&
+	buf[parse->i + 2] != ' ' && parse->i <= parse->last)
+		return (ft_exit_bad_id(parse, 2));
+	if (buf[parse->i] == 'E' && buf[parse->i + 1] == 'A' &&
+	buf[parse->i + 2] != ' ' && parse->i <= parse->last)
+		return (ft_exit_bad_id(parse, 3));
+	if (buf[parse->i] == 'N' && buf[parse->i + 1] == 'O' &&
+	buf[parse->i + 2] != ' ' && parse->i <= parse->last)
+		return (ft_exit_bad_id(parse, 0));
+	if (buf[parse->i] == 'S' && buf[parse->i + 1] == 'O' &&
+	buf[parse->i + 2] != ' ' && parse->i <= parse->last)
+		return (ft_exit_bad_id(parse, 1));
+	if (buf[parse->i] == 'R' && buf[parse->i + 1] != ' ' &&
+	parse->i <= parse->last)
+		return (ft_exit_bad_id(parse, 4));
+	return (1);
+}
+
 int		ft_bad_infos(t_parse *parse, char *buf)
 {
 	int	i;
 
 	i = 0;
-	if (buf[parse->i] == 'S' && (buf[parse->i + 1] != ' ' &&
-	buf[parse->i + 1] != 'O'))
-		return (ft_exit_double(parse, 2));
+	if (ft_check_id(parse, buf) == 0)
+		return (0);
 	if (parse->i == 0)
 	{
 		i = parse->i;

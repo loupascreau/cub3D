@@ -1,20 +1,20 @@
-S ./textures/mexicain.xpm
+Sdh  ./textures/mexicain.xpm
 NO ./textures/fff.xpm
 
-WE	 ./textures/barca.xpm
-EA     ./textures/world_cup.xpm
+WE   ./textures/barca.xpm
+EA  ./textures/world_cup.xpm
 SO  ./textures/ldc.xpm
-C  256 ,   180,,  180
-F 100 ,210,195
+C 256 ,   180,,  180
+F 100 ,210,,,  195
 
 
 
-R 1200 900
+R 1200 00
 
     11111111111        11111111
     10020000201        10000001
    1100000000011      1100000011
-   1000000000001      1000020001
+   100klakgkd001      1000020001
    10000000000011111111000000001
 11112000000000020001011000020001
 1000000000000001000000200000000111111
