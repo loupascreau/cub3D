@@ -6,7 +6,7 @@
 /*   By: lpascrea <lpascrea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/03 10:16:25 by lpascrea          #+#    #+#             */
-/*   Updated: 2021/03/01 16:52:59 by lpascrea         ###   ########.fr       */
+/*   Updated: 2021/03/02 10:52:23 by lpascrea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ int		ft_error(int nbr)
 		write(2, "Error\nYour choosen file doesn't exist\n", 38);
 	if (nbr == 3)
 	{
-		write(2, "Error\nYour map is missing starter coordinates\n", 46);
-		write(2, "Or she's not at end\n", 20);
+		write(2, "Error\nProblem with map rules\n", 30);
+		write(2, "Your map is missing starter coordinates\n", 40);
+		write(2, "Or she's not at end or there is no map\n", 39);
 	}
 	if (nbr == 4)
 		write(2, "Error\nProblem with memory allocation\n", 37);
