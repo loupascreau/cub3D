@@ -29,7 +29,8 @@ void	ft_draw_sprite(t_cast *cast, int d, int y)
 			{
 				ft_memcpy(cast->addr + 4 * cast->screen_width * y + cast->stripe
 				* 4, &cast->tex[4].addr[cast->texy % 64 * cast->tex[4].size_line
-				+ cast->texx % 64 * cast->tex[4].bits_per_pixels / 8], sizeof(int));
+				+ cast->texx % 64 * cast->tex[4].bits_per_pixels / 8],
+				sizeof(int));
 			}
 			y++;
 		}

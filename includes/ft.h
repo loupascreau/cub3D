@@ -228,17 +228,23 @@ int					ft_fill_line(char **tab, char **line, int var,
 int					ft_check_all(char **tab, char **line, t_parse *parse,
 					char *buf);
 int					ft_engine(t_parse *parse, t_cast *cast);
-int					ft_init_tex0(t_cast *cast, t_tex *tex, t_parse *parse, int w);
-int					ft_init_tex1(t_cast *cast, t_tex *tex, t_parse *parse, int w);
-int					ft_init_tex2(t_cast *cast, t_tex *tex, t_parse *parse, int w);
-int					ft_init_tex3(t_cast *cast, t_tex *tex, t_parse *parse, int w);
-int					ft_init_tex4(t_cast *cast, t_tex *tex, t_parse *parse, int w);
+int					ft_init_tex0(t_cast *cast, t_tex *tex, t_parse *parse,
+					int w);
+int					ft_init_tex1(t_cast *cast, t_tex *tex, t_parse *parse,
+					int w);
+int					ft_init_tex2(t_cast *cast, t_tex *tex, t_parse *parse,
+					int w);
+int					ft_init_tex3(t_cast *cast, t_tex *tex, t_parse *parse,
+					int w);
+int					ft_init_tex4(t_cast *cast, t_tex *tex, t_parse *parse,
+					int w);
 int					ft_recup_sprites(t_parse *parse, t_cast *cast);
 int					ft_setup_data_parse_cast(t_parse *parse, t_cast *cast);
 int					ft_set_params(t_parse *parse, t_cast *cast);
 int					ft_raycasting(t_cast *cast);
 int					ft_save(t_cast *cast, t_parse *parse);
-int					ft_init_texture(t_cast *cast, t_tex *tex, int w, t_parse *parse);
+int					ft_init_texture(t_cast *cast, t_tex *tex, int w,
+					t_parse *parse);
 void				ft_init_data_texture(t_tex *tex);
 void				ft_textures(t_cast *cast);
 void				ft_texture_ns(t_cast *cast, t_tex *tex);
@@ -255,14 +261,22 @@ int					ft_expose(t_cast *cast);
 int					ft_error(int nbr);
 int					ft_error_parsing(int nbr);
 int					ft_error_file(int nbr);
-int					ft_exit_north(t_parse *parse, char *line, char **tmp, int count);
-int					ft_exit_south(t_parse *parse, char *line, char **tmp, int count);
-int					ft_exit_west(t_parse *parse, char *line, char **tmp, int count);
-int					ft_exit_east(t_parse *parse, char *line, char **tmp, int count);
-int					ft_exit_sprite(t_parse *parse, char *line, char **tmp, int ount);
-int					ft_exit_xy(t_parse *parse, char *line, char **tmp, int count);
-int					ft_exit_floor(t_parse *parse, char *line, char **tmp, int count);
-int					ft_exit_ceil(t_parse *parse, char *line, char **tmp, int count);
+int					ft_exit_north(t_parse *parse, char *line, char **tmp,
+					int count);
+int					ft_exit_south(t_parse *parse, char *line, char **tmp,
+					int count);
+int					ft_exit_west(t_parse *parse, char *line, char **tmp,
+					int count);
+int					ft_exit_east(t_parse *parse, char *line, char **tmp,
+					int count);
+int					ft_exit_sprite(t_parse *parse, char *line, char **tmp,
+					int ount);
+int					ft_exit_xy(t_parse *parse, char *line, char **tmp,
+					int count);
+int					ft_exit_floor(t_parse *parse, char *line, char **tmp,
+					int count);
+int					ft_exit_ceil(t_parse *parse, char *line, char **tmp,
+					int count);
 int					ft_exit_cf(t_parse *parse, char **tmp, int count);
 int					ft_exit_player_map(t_parse *parse);
 int					ft_exit_check_map(t_parse *parse);

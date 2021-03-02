@@ -31,6 +31,12 @@ char	*ft_putnbr_in_base(int nbr, char *base, char *final, int i)
 	return (final);
 }
 
+void	ft_end(char *final, int nbr_to_malloc, char *nbr)
+{
+	final[nbr_to_malloc] = '\0';
+	free(nbr);
+}
+
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
 	int		decimal;
@@ -56,7 +62,6 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 	decimal < 0 ? nbr_to_malloc++ : nbr_to_malloc;
 	final = (char *)malloc(sizeof(char) * (nbr_to_malloc + 1));
 	final = ft_putnbr_in_base(decimal, base_to, final, nbr_to_malloc - 1);
-	final[nbr_to_malloc] = '\0';
-	free(nbr);
+	ft_end(final, nbr_to_malloc, nbr);
 	return (final);
 }

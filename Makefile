@@ -43,7 +43,7 @@ MLX_NAME	=	$(MLX_PATH)libmlx.a
 
 INC			=	./includes/
 
-CC			=	clang -Wall -Wextra -Werror
+CC			=	clang -Wall -Wextra -Werror -g
 RM			=	rm -f
 
 CFLAGS		=	-lm -lmlx -lXext -lX11

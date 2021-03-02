@@ -33,6 +33,9 @@ int		ft_bad_infos(t_parse *parse, char *buf)
 	int	i;
 
 	i = 0;
+	if (buf[parse->i] == 'S' && (buf[parse->i + 1] != ' ' &&
+	buf[parse->i + 1] != 'O'))
+		return (ft_exit_double(parse, 2));
 	if (parse->i == 0)
 	{
 		i = parse->i;
