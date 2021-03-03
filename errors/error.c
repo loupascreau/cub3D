@@ -91,3 +91,22 @@ void	ft_exit_prog2(t_parse *parse, t_cast *cast)
 	mlx_destroy_display(cast->mlx);
 	free(cast->mlx);
 }
+
+int		ft_exit_parse_file_bis(t_parse *parse)
+{
+	if (parse->north >= 0)
+		free(parse->no);
+	if (parse->east >= 0)
+		free(parse->ea);
+	if (parse->south >= 0)
+		free(parse->so);
+	if (parse->west >= 0)
+		free(parse->we);
+	if (parse->sprite >= 0)
+		free(parse->s);
+	if (parse->floor >= 0)
+		free(parse->f);
+	if (parse->ceil >= 0)
+		free(parse->c);
+	return (ft_error_file(2));
+}

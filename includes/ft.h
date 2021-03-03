@@ -284,6 +284,7 @@ int					ft_exit_map_close(t_parse *parse);
 int					ft_exit_file(t_parse *parse);
 int					ft_exit_double(t_parse *parse, int nbr);
 int					ft_exit_parse_file(t_parse *parse);
+int					ft_exit_parse_file_bis(t_parse *parse);
 void				ft_exit_prog(t_parse *parse, t_cast *cast);
 void				ft_exit_prog2(t_parse *parse, t_cast *cast);
 

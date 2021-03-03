@@ -23,6 +23,8 @@ void	ft_draw_sprite(t_cast *cast, int d, int y)
 		while (y < cast->draw_endy)
 		{
 			d = y * 256 - cast->screen_height * 128 + cast->sprite_height * 128;
+			if (d == -128)
+				d += 128;
 			cast->texy = ((d * cast->tex_height) / cast->sprite_height) / 256;
 			if (cast->tex[4].addr[cast->texy % 64 * cast->tex[4].size_line +
 			cast->texx % 64 * cast->tex[4].bits_per_pixels / 8] != 0)

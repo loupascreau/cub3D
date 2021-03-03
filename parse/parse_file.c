@@ -44,7 +44,11 @@ int		ft_map_at_end(char *buf, t_parse *parse)
 		{
 			parse->i = parse->last;
 			while (buf[parse->i] != '1' && buf[parse->i])
+			{
+				if (buf[parse->i] != ' ' && buf[parse->i] != '\n')
+					return (ft_exit_parse_file_bis(parse));
 				parse->i++;
+			}
 			while (buf[parse->i - 1] != '\n')
 				parse->i--;
 			if (ft_parse_map(buf, parse) == 0)
