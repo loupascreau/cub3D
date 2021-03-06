@@ -1,0 +1,19 @@
+EA    ./textures/wood2.xpm
+	NO       ./textures/eagle.xpm
+		SO ./textures/redbrick.xpm
+		WE ./textures/wood3.xpm
+
+
+F    215,,,, 210 ,,    195
+
+    	R 600 600
+	C 255   ,, 100,,100
+S ./textures/barrel.xpm
+
+11111111111
+10000000021
+10000000001
+10002000001
+10000000001
+1000N000001
+11111111111
